@@ -13,6 +13,7 @@ Purpose : Main Web Page Request Client Handling
 
 package com.eden.euphoria.main.controller;
 
+import com.eden.euphoria.commons.annotation.LogException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -20,21 +21,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 
     @GetMapping(value = "/")
+    @LogException
     public String homePage() {
         return "main/main";
     }
 
     @GetMapping(value = "main/main")
+    @LogException
     public String mainPage() {
         return "main/main";
     }
 
-    @GetMapping("/error/404")
+    @GetMapping(value = "/error/404")
+    @LogException
     public String error_404_page() {
         return "error/error_404_page";
     }
 
-    @GetMapping("/error/500")
+    @GetMapping(value = "/error/500")
+    @LogException
     public String error_500_page() {
         return "error/error_500_page";
     }
