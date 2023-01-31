@@ -15,6 +15,7 @@ package com.eden.euphoria.user.service;
 
 import com.eden.euphoria.commons.annotation.LogException;
 import com.eden.euphoria.user.dao.UserDAO;
+import com.eden.euphoria.user.dto.LoginDTO;
 import com.eden.euphoria.user.dto.UserVo;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,12 @@ public class UserServiceImpl  implements UserService {
     @LogException
     public boolean isExistEmail(String user_email) {
         return userDAO.isExistEmail(user_email) > 2;
+    }
+
+    //  로그인
+    @Override
+    @LogException
+    public UserVo selectByIdAndPw(LoginDTO loginDto) {
+        return userDAO.selectByIdAndPw(loginDto);
     }
 }

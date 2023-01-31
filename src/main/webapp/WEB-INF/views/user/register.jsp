@@ -62,9 +62,7 @@
                     </div>
 
                     <div class="row mt-1">
-                        <div class="col">
-                            <div class="col" id="alterPassword"><form:errors path="user_pw" id="error_message"/></div>
-                        </div>
+                        <div class="col" id="alterPassword"><form:errors path="user_pw" id="error_message"/></div>
                     </div>
 
                     <div class="row mt-1">
@@ -202,6 +200,7 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" id="user_image" name="user_image" value="default-user-image.jpg">
         </form:form>
 
         <div class="social-auth-links text-center">

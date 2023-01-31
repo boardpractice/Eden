@@ -35,8 +35,17 @@
         select count(*) from eden_user where user_phone = #{user_phone}
     </select>
 
+    <!-- 이메일 중복체크 -->
     <select id="isExistEmail" resultType="int">
         select count(*) from eden_user where user_email = #{user_email}
+    </select>
+
+    <!-- 유저 로그인 -->
+    <select id="selectByIdAndPw" resultType="UserVo">
+        SELECT *
+        FROM eden_user
+        WHERE user_id = #{user_id}
+          AND user_pw = #{user_pw}
     </select>
 
 </mapper>

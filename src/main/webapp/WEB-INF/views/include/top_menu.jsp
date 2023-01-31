@@ -120,7 +120,8 @@ Purpose : head tag include jsp file
                                          alt="User Image">
                                     <p>
                                         <small>
-                                            가입일자 : <fmt:formatDate value="${sessionUser.user_join_date}" pattern="yyyy-MM-dd"/>
+                                            가입일자 : <fmt:formatDate value="${sessionUser.user_join_date}"
+                                                                   pattern="yyyy-MM-dd"/>
                                         </small>
                                         <small>
                                             최근로그인일자 : <fmt:formatDate value="${sessionUser.user_last_connection_date}"
@@ -176,7 +177,8 @@ Purpose : head tag include jsp file
                                                 class="fa fa-user-plus"></i><b> 회원가입</b></a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="${path}/user/login" class="btn btn-primary btn-flat"><i
+                                        <a href="#" class="btn btn-primary btn-flat" data-toggle="modal"
+                                           data-target="#userLoginModel"><i
                                                 class="glyphicon glyphicon-log-in"></i><b> 로그인</b></a>
                                     </div>
                                 </li>
@@ -188,3 +190,66 @@ Purpose : head tag include jsp file
         </div>
     </nav>
 </header>
+
+<div class="modal fade" id="userLoginModel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">로그인 페이지</h4>
+            </div>
+            <div class="modal-body" data-rno>
+                <div class="row mt-1">
+                    <div class="col">
+                        <div class="row mt-1">
+                            <div class="col">
+                                <label for="inputId">아이디</label>
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col">
+                                <input type="text" class="form-control" id="inputId" name="user_id"
+                                       placeholder="아이디를 입력해주세요">
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col">
+                                <div class="col">
+                                    <input type="password" class="form-control" id="inputPw" name="user_pw"
+                                           placeholder="비밀번호를 입력해주세요">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col">
+                                <input type="checkbox" class="form-check-input" id="saveIdBox">ID저장
+                            </div>
+                            <div class="col">
+                                <input type="checkbox" class="form-check-input" id="userCookie"> 자동로그인
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row mt-1">
+                    <div class="col">
+                        <button type="button" class="btn btn-danger  btn-xs pull-left" data-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-primary btn-xs pull-right infoModBtn" id="loginButton"><i
+                                class="glyphicon glyphicon-log-in"></i>로그인
+                        </button>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col md-3 pull-left">
+                        <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userFindModel"><b>아이디 찾기</b></a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userFindModel"><b>비밀번호 찾기</b></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
