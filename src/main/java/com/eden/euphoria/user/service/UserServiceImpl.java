@@ -16,6 +16,7 @@ package com.eden.euphoria.user.service;
 import com.eden.euphoria.commons.annotation.LogException;
 import com.eden.euphoria.user.dao.UserDAO;
 import com.eden.euphoria.user.dto.UserVo;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,11 @@ public class UserServiceImpl  implements UserService {
     @Override
     @LogException
     public void insertUser(UserVo param) {
+
+        // 비밀번호 암호화
+        String password = BCrypt.hashpw(param.getUser_pw(), BCrypt.gensalt());
+        param.setUser_pw(password);
+
         userDAO.insertUser(param);
     }
 

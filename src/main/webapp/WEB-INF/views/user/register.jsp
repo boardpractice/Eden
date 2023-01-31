@@ -28,7 +28,7 @@
     <div class="register-box-body">
         <p class="login-box-msg">회원가입 페이지</p>
 
-        <form action="${path}/user/insertUserProcess" id="insertForm" method="post">
+        <form:form action="${path}/user/insertUserProcess" modelAttribute="userVo" id="insertForm" method="post">
             <div class="row mt-2">
                 <div class="col">
                     <div class="row mt-1">
@@ -39,12 +39,13 @@
 
                     <div class="row mt-1">
                         <div class="col">
-                            <input type="text" id="joinIdInput" class="form-control" name="user_id" placeholder="아이디를 입력하세요">
+                            <form:input type="text" id="joinIdInput" class="form-control" path="user_id"
+                                        placeholder="아이디를 입력하세요"/>
                         </div>
                     </div>
 
                     <div class="row mt-1">
-                        <div class="col" id="alertId"></div>
+                        <div class="col" id="alertId"><form:errors path="user_id" id="error_message"/></div>
                     </div>
 
                     <div class="row mt-1">
@@ -55,13 +56,14 @@
 
                     <div class="row mt-1">
                         <div class="col">
-                            <input type="password" id="changePassword" class="form-control" placeholder="비밀번호를 입력하세요">
+                            <form:input type="password" id="changePassword" class="form-control"
+                                        placeholder="비밀번호를 입력하세요" path="user_pw"/>
                         </div>
                     </div>
 
                     <div class="row mt-1">
                         <div class="col">
-                            <div class="col" id="alterPassword"></div>
+                            <div class="col" id="alterPassword"><form:errors path="user_pw" id="error_message"/></div>
                         </div>
                     </div>
 
@@ -73,7 +75,8 @@
 
                     <div class="row mt-1">
                         <div class="col">
-                            <input type="password" id="confirmPassword" class="form-control" name="user_pw" placeholder="비밀번호를 한번 더 입력해주세요">
+                            <input type="password" id="confirmPassword" class="form-control"
+                                   placeholder="비밀번호를 한번 더 입력해주세요">
                         </div>
                     </div>
 
@@ -88,11 +91,12 @@
                     </div>
 
                     <div class="row mt-1">
-                        <input type="text" id="userNickName" class="form-control" name="user_nickname" placeholder="닉네임을 입력해주세요">
+                        <form:input type="text" id="userNickName" class="form-control" path="user_nickname"
+                                    placeholder="닉네임을 입력해주세요"/>
                     </div>
 
                     <div class="row mt-1">
-                        <div class="col" id="alertNickName"></div>
+                        <div class="col" id="alertNickName"><form:errors path="user_nickname" id="error_message"/></div>
                     </div>
 
                     <div class="row mt-1">
@@ -103,13 +107,13 @@
 
                     <div class="row mt-1">
                         <div class="col">
-                            <input type="radio" id="userGender" name="user_gender" value="M">남
-                            <input type="radio" id="userGender" name="user_gender" value="Y">여
+                            <form:radiobutton id="userGender" path="user_gender" value="M"/>남
+                            <form:radiobutton id="userGender" path="user_gender" value="W"/>여
                         </div>
                     </div>
 
                     <div class="row mt-1">
-                        <div class="col" id="alertGender"></div>
+                        <div class="col" id="alertGender"><form:errors path="user_gender" id="error_message"/></div>
                     </div>
 
                     <div class="row mt-1">
@@ -120,12 +124,13 @@
 
                     <div class="row mt-1">
                         <div class="col">
-                            <input type="date" id="userBirth" class="form-control" name="user_birth" placeholder="생년월일을 선택해주세요">
+                            <form:input type="date" id="userBirth" class="form-control" path="user_birth"
+                                        placeholder="생년월일을 선택해주세요"/>
                         </div>
                     </div>
 
                     <div class="row mt-1">
-                        <div class="col" id="alertBirth"></div>
+                        <div class="col" id="alertBirth"><form:errors path="user_birth"/></div>
                     </div>
 
                     <div class="row mt-1">
@@ -136,12 +141,13 @@
 
                     <div class="row mt-1">
                         <div class="col">
-                            <input type="text" id="userPhone" class="form-control" name="user_phone" placeholder="휴대폰번호를 입력해주세요">
+                            <form:input type="text" id="userPhone" class="form-control" path="user_phone"
+                                        placeholder="휴대폰번호를 입력해주세요"/>
                         </div>
                     </div>
 
                     <div class="row mt-1">
-                        <div calss="col" id="alertPhone"></div>
+                        <div calss="col" id="alertPhone"><form:errors path="user_phone" id="error_message"/></div>
                     </div>
 
                     <div class="row mt-1">
@@ -152,7 +158,8 @@
 
                     <div class="row mt-1">
                         <div class="col">
-                            <input type="text" id="userEmail" class="form-control" name="user_email" placeholder="이메일주소를 입력해주세요">
+                            <form:input type="text" id="userEmail" class="form-control" path="user_email"
+                                        placeholder="이메일주소를 입력해주세요"/>
                         </div>
                     </div>
 
@@ -165,7 +172,7 @@
                     </div>
 
                     <div class="row mt-1">
-                        <div class="col" id="alertEmail"></div>
+                        <div class="col" id="alertEmail"><form:errors path="user_email" id="error_message"/></div>
                     </div>
 
                     <div class="row mt-1">
@@ -189,12 +196,13 @@
                     <div class="row mt-1">
                         <div class="col">
                             <a type="button" class="btn btn-default pull-left" href="../main/main">취소</a>
-                            <button type="button" class="btn btn-primary infoModBtn pull-right" id="joinButton">가입하기</button>
+                            <button type="button" class="btn btn-primary infoModBtn pull-right" id="joinButton">가입하기
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </form:form>
 
         <div class="social-auth-links text-center">
             <p>- 또는 -</p>
