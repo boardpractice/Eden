@@ -3,10 +3,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.user.UserSQLMapper">
 
+    <!-- 회원가입 -->
     <insert id="insertUser">
-        INSERT INTO eden_user (user_id, user_pw, user_nickname, user_gender, user_birth, user_phone,
+        insert into eden_user (user_id, user_pw, user_nickname, user_gender, user_birth, user_phone,
                                user_email, user_status, user_join_date, user_last_connection_date)
-        VALUES (
+        values (
                    #{user_id},
                    #{user_pw},
                    #{user_nickname},
@@ -18,5 +19,24 @@
                    NOW(),
                    NOW())
     </insert>
+
+    <!-- 아이디 중복체크 -->
+    <select id="isExistId" resultType="int">
+        select count(*) FROM eden_user where user_id = #{user_id}
+    </select>
+
+    <!-- 닉네임 중복체크 -->
+    <select id="isExistNickName" resultType="int">
+        select count(*) from eden_user where user_nickname = #{user_nickname}
+    </select>
+
+    <!-- 휴대폰 중복체크 -->
+    <select id="isExistPhone" resultType="int">
+        select count(*) from eden_user where user_phone = #{user_phone}
+    </select>
+
+    <select id="isExistEmail" resultType="int">
+        select count(*) from eden_user where user_email = #{user_email}
+    </select>
 
 </mapper>

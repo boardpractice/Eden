@@ -39,7 +39,7 @@
 
                     <div class="row mt-1">
                         <div class="col">
-                            <input type="text" id="joinIdInput" class="form-control" name="user_id" placeholder="아이디를 입력하세요요">
+                            <input type="text" id="joinIdInput" class="form-control" name="user_id" placeholder="아이디를 입력하세요">
                         </div>
                     </div>
 
@@ -55,7 +55,7 @@
 
                     <div class="row mt-1">
                         <div class="col">
-                            <input type="password" id="changePassword" class="form-control" name="user_pw" placeholder="비밀번호를 입력하세요">
+                            <input type="password" id="changePassword" class="form-control" placeholder="비밀번호를 입력하세요">
                         </div>
                     </div>
 
@@ -78,7 +78,7 @@
                     </div>
 
                     <div class="row mt-1">
-                        <div class="col" id="alertPassword2"></div>
+                        <div class="col" id="alterPassword2"></div>
                     </div>
 
                     <div class="row mt-1">
@@ -205,19 +205,10 @@
                 <i class="fa fa-google-plus"></i> 구글 계정으로 로그인
             </a>
         </div>
-
-        <a href="${path}/user/login" class="text-center">로그인</a>
     </div>
     <!-- /.form-box -->
 </div>
 <!-- /.register-box -->
 
 <%@ include file="../include/plugin_js.jsp" %>
-<script>
-    $(document).ready(function () {
-        $("#joinButton").click(function() {
-            $("#insertForm").submit();
-        });
-    });
-</script>
 </body>

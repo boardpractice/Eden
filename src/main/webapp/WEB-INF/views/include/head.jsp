@@ -71,6 +71,6 @@ Purpose : head tag include jsp file
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
     <%-- my Java Script --%>
-    <script src="/dist/js/AjaxCalling.js" type="text/javascript"></script>
+    <script src="/dist/js/user/register.js" type="text/javascript"></script>
 
 </head>
