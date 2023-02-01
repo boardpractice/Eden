@@ -57,7 +57,7 @@ window.addEventListener("DOMContentLoaded", function () {
             // contentType : "application/x-www-form-urlencoded", // post
             success: function (data) {
                 if (data.result == "success") {
-                    location.href = "../board/mainPage"
+                    location.href = "../main/main"
                 } else if (data.result == "out") {
                     if (confirm("비활성화된 계정입니다. 계정 활성화 페이지로 이동하시겠습니까?") == true) {
                         location.href = "../user/userLogoutProcess";
@@ -76,7 +76,7 @@ window.addEventListener("DOMContentLoaded", function () {
         if (confirm("로그아웃 하시겠습니까?")) {
             $.ajax({
                 type: "post",
-                url: "../user/userLoginProcess",
+                url: "../user/userLogoutProcess",
                 // contentType : "application/x-www-form-urlencoded", // post
                 dataType: "json",
                 success: function (data) {
