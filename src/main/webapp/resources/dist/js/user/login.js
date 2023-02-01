@@ -25,6 +25,17 @@ window.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    var userInputId = getCookie("userInputId");
+    var setCookieYN = getCookie("setCookieYN");
+
+    if (setCookieYN == 'Y') {
+        $("#saveIdBox").prop("checked", true);
+    } else {
+        $("#saveIdBox").prop("checked", false);
+    }
+
+    $("#inputId").val(userInputId);
+
     $("#loginButton").click(function () {
 
         var id = $("#inputId").val();
@@ -52,6 +63,7 @@ window.addEventListener("DOMContentLoaded", function () {
             data: {
                 user_id: $("#inputId").val(),
                 user_pw: $("#inputPw").val(),
+                saveCookie: $("#saveIdBox").prop("checked")
             },
             dataType: "json",
             // contentType : "application/x-www-form-urlencoded", // post
@@ -86,3 +98,19 @@ window.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+//쿠키값 가져오기
+function getCookie(cookie_name) {
+    var x, y;
+    var val = document.cookie.split(';');
+
+    for (var i = 0; i < val.length; i++) {
+        x = val[i].substr(0, val[i].indexOf('='));
+        y = val[i].substr(val[i].indexOf('=') + 1);
+        x = x.replace(/^\s+|\s+$/g, ''); // 공백 제거
+
+        if (x == cookie_name) {
+            return unescape(y);
+        }
+    }
+}
