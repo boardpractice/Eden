@@ -48,4 +48,16 @@
         <beans:property name="cacheSeconds" value="60"/>
     </beans:bean>
 
+    <!--로그인 체크 Interceptor 설정-->
+    <beans:bean id="loginInterceptor" class="com.eden.euphoria.commons.interceptor.AuthenticationInterceptor"/>
+
+    <!-- 로그인 이후 회원가입/로그인 페이지 접속 차단 -->
+    <beans:bean id="loginAfterInterceptor" class="com.eden.euphoria.commons.interceptor.LoginAfterInterceptor" />
+
+    <interceptors>
+        <interceptor>
+            <mapping path="/user/register"/>
+            <beans:ref bean="loginAfterInterceptor" />
+        </interceptor>
+    </interceptors>
 </beans:beans>

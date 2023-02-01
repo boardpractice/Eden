@@ -192,6 +192,13 @@ public class RestUserController {
                         response.addCookie(userInputId);
                     }
                 }
+                Object destination = session.getAttribute("destination");
+                // 삼항 연산자로 이전페이지가 존재하지 않으면 메인페이지로 이동
+                if (destination != null) {
+                    data.put("destination", destination);
+                } else {
+                    data.put("destination", request.getContextPath() + "/");
+                }
             }
         }
         return data;
