@@ -17,6 +17,7 @@ import com.eden.euphoria.user.dto.LoginDTO;
 import com.eden.euphoria.user.dto.QuestionVo;
 import com.eden.euphoria.user.dto.UserVo;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -54,4 +55,10 @@ public interface UserService {
 
     // 임시비밀번호 발급
     public void getUserUpdatePw(UserVo param);
+
+    // 로그인유지
+    public void keepLogin(String uid, String sessionId, Date next);
+
+    // Session Key 확인
+    public UserVo checkLoginBefore(String value);
 }

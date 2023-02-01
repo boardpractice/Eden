@@ -22,6 +22,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -107,5 +108,19 @@ public class UserServiceImpl  implements UserService {
     //  임시 비밀번호 발급
     public void getUserUpdatePw(UserVo param) {
         userDAO.getUserUpdatePw(param);
+    }
+
+    //  자동로그인
+    @Override
+    @LogException
+    public void keepLogin(String user_id, String sessionId, Date next) {
+        userDAO.keepLogin(user_id, sessionId, next);
+    }
+
+    // Session Key 확인
+    @Override
+    @LogException
+    public UserVo checkLoginBefore(String value) {
+        return userDAO.checkUserWithSessionKey(value);
     }
 }

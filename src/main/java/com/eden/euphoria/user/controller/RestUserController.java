@@ -31,6 +31,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -161,6 +162,23 @@ public class RestUserController {
             } else {
                 data.put("result", "success");
                 session.setAttribute("sessionUser", sessionUser);
+                if (loginDto.isUseCookie()) { // 로그인 유지 체크시
+                    // 로그인 유지 유효기간 : 일주일
+                    int amount = 60 * 60 * 24 * 7;
+                    // 로그인 유지 유효 일자
+                    Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
+                    // 로그인 유지 기간 갱신(아이디, 세션아이디, 유효일자)
+                    userService.keepLogin(sessionUser.getUser_id(), session.getId(), sessionLimit);
+
+                    // 로그인 쿠키 객체 생성
+                    Cookie loginCookie = new Cookie("loginCookie", session.getId());
+                    // 모든 경로에서 접근 가능하게 처리
+                    loginCookie.setPath("/");
+                    // 쿠키 유효 기간
+                    loginCookie.setMaxAge(60 * 60 * 24 * 7);
+                    // 쿠키 저장
+                    response.addCookie(loginCookie);
+                }
 
                 /* 아이디 저장 */
                 if (loginDto.isSaveCookie()) {
@@ -209,6 +227,19 @@ public class RestUserController {
     @LogException
     public HashMap<String, Object> userLogoutProcess(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         HashMap<String, Object> data = new HashMap<>();
+        UserVo sessionUser = (UserVo) session.getAttribute("sessionUser");
+
+        Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+        if (loginCookie != null) {
+            loginCookie.setPath("/");
+            // 쿠키 유효기간 0
+            loginCookie.setMaxAge(0);
+            // 쿠키 저장
+            response.addCookie(loginCookie);
+            // 로그인 유지 갱신
+            userService.keepLogin(sessionUser.getUser_id(), "none", new Date());
+        }
+
         session.removeAttribute("sessionUser");
         session.invalidate();
         return data;

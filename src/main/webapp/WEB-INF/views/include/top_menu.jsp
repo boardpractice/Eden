@@ -224,8 +224,6 @@ Purpose : head tag include jsp file
                         <div class="row mt-1">
                             <div class="col">
                                 <input type="checkbox" class="form-check-input" id="saveIdBox">ID저장
-                            </div>
-                            <div class="col">
                                 <input type="checkbox" class="form-check-input" id="userCookie"> 자동로그인
                             </div>
                         </div>

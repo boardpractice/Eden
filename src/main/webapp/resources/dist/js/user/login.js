@@ -63,6 +63,7 @@ window.addEventListener("DOMContentLoaded", function () {
             data: {
                 user_id: $("#inputId").val(),
                 user_pw: $("#inputPw").val(),
+                useCookie: $("#userCookie").prop("checked"),
                 saveCookie: $("#saveIdBox").prop("checked")
             },
             dataType: "json",
@@ -76,7 +77,7 @@ window.addEventListener("DOMContentLoaded", function () {
                         location.href = "../user/userLogoutProcess";
                         location.href = "../user/userRecoveryPage";
                     } else {
-                        return;
+                        location.href="../main/main";
                     }
                 } else {
                     alert("로그인에 실패하였습니다. 아이디와 비밀번호를 확인해 주세요.");

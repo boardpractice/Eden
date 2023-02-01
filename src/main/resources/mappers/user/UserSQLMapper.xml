@@ -81,4 +81,21 @@
         WHERE user_id = #{user_id}
     </update>
 
+    <!--로그인 유지-->
+    <update id="keepLogin">
+        UPDATE eden_user
+        SET
+            sessionkey     = #{sessionId}
+          , sessionlimit = #{next}
+        WHERE user_id = #{user_id}
+    </update>
+
+    <!--Session Key 확인-->
+    <select id="checkUserWithSessionKey" resultType="UserVo">
+        SELECT *
+        FROM eden_user
+        WHERE sessionkey = #{value}
+          AND sessionlimit > NOW()
+    </select>
+
 </mapper>

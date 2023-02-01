@@ -54,10 +54,19 @@
     <!-- 로그인 이후 회원가입/로그인 페이지 접속 차단 -->
     <beans:bean id="loginAfterInterceptor" class="com.eden.euphoria.commons.interceptor.LoginAfterInterceptor" />
 
+    <!-- 자동로그인 인터셉터 설정 -->
+    <beans:bean id="autoLoginInterceptor" class="com.eden.euphoria.commons.interceptor.AutoLoginInterceptor" />
+
     <interceptors>
         <interceptor>
             <mapping path="/user/register"/>
             <beans:ref bean="loginAfterInterceptor" />
+        </interceptor>
+
+        <interceptor>
+            <mapping path="/**/"/>
+            <exclude-mapping path="user/userLogoutProcess"/>
+            <beans:ref bean="autoLoginInterceptor" />
         </interceptor>
     </interceptors>
 </beans:beans>

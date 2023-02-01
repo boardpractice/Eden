@@ -15,6 +15,8 @@ create table eden_user(
     user_status varchar(200) not null default 'active',
     user_join_date timestamp not null default now(),
     user_last_connection_date timestamp not null default now(),
+    sessionkey varchar(50) NOT NULL DEFAULT 'none',
+    sessionlimit timestamp default now(),
     constraint user_find_question_no foreign key (question_no) references eden_find_question (question_no)
 );
 
@@ -37,3 +39,9 @@ INSERT INTO eden_find_question(question_no, question_content) VALUES(7, '가장 
 alter table eden_user add column question_no INT(11) not null default 1;
 alter table eden_user add constraint user_find_question_no foreign key (question_no) references eden_find_question (question_no);
 alter table eden_user add column user_findAnswer varchar(200) not null default '기본값';
+
+-- 세션 아이디
+ALTER TABLE eden_user add column sessionkey varchar(50) NOT NULL DEFAULT 'none';
+
+-- 세션 유효시간 : 유효한 기간에 다시 접속을 했는지 판단
+ALTER TABLE eden_user add column sessionlimit timestamp default now();
