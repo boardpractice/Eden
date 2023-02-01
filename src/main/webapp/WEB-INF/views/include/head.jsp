@@ -73,5 +73,6 @@ Purpose : head tag include jsp file
     <%-- my Java Script --%>
     <script src="/dist/js/user/register.js" type="text/javascript"></script>
     <script src="/dist/js/user/login.js" type="text/javascript"></script>
+    <script src="/dist/js/user/findUserInfo.js" type="text/javascript"></script>
 
 </head>

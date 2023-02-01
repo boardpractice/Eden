@@ -213,4 +213,73 @@ public class RestUserController {
         session.invalidate();
         return data;
     }
+
+    //  아이디 찾기
+    @PostMapping("getUserIdByNickNameAndEmail")
+    public HashMap<String, Object> getUserIdByNickNameAndEmail(UserVo param) {
+
+        HashMap<String, Object> data = new HashMap<>();
+
+        HashMap<String, Object> userInfo = userService.getUserIdByNickNameAndEmail(param);
+
+        if (userInfo == null) {
+            data.put("result", "fail");
+        } else {
+            data.put("result", "success");
+            data.put("userInfo", userInfo);
+        }
+
+        return data;
+    }
+
+    //  비밀번호 찾기 질문 조회
+    @PostMapping(value = "getUserQuestionById")
+    @LogException
+    public HashMap<String, Object> getUserQuestionById(UserVo param) {
+
+        HashMap<String, Object> data = new HashMap<>();
+
+        HashMap<String, Object> userInfo = userService.getUserQuestionById(param);
+
+        if (userInfo == null) {
+            data.put("result", "fail");
+        } else {
+            data.put("userInfo", userInfo);
+        }
+
+        return data;
+    }
+
+    //  비밀번호 질문 답변 조회
+    @PostMapping(value = "getUserPwByfindAnswer")
+    @LogException
+    public HashMap<String, Object> getUserPwByfindAnswer(UserVo param) {
+        HashMap<String, Object> data = new HashMap<>();
+        UserVo userInfo = userService.getUserPwByfindAnswer(param);
+
+        if (userInfo == null) {
+            data.put("result", "fail");
+        } else {
+            data.put("result", "success");
+        }
+        return data;
+    }
+    
+    //  비밀번호 찾기 - 수정
+    @PostMapping("getUserUpdatePw")
+    @LogException
+    public HashMap<String, Object> getUserUpdatePw(UserVo param) {
+
+        HashMap<String, Object> data = new HashMap<String, Object>();
+        boolean exist = userService.isExistId(param.getUser_id());
+        if (exist) {
+            data.put("result", "success");
+            String password = BCrypt.hashpw(param.getUser_pw(), BCrypt.gensalt());
+            param.setUser_pw(password);
+            userService.getUserUpdatePw(param);
+        } else {
+            data.put("result", "fail");
+        }
+        return data;
+    }
 }

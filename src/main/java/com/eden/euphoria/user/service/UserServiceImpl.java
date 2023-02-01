@@ -16,10 +16,14 @@ package com.eden.euphoria.user.service;
 import com.eden.euphoria.commons.annotation.LogException;
 import com.eden.euphoria.user.dao.UserDAO;
 import com.eden.euphoria.user.dto.LoginDTO;
+import com.eden.euphoria.user.dto.QuestionVo;
 import com.eden.euphoria.user.dto.UserVo;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class UserServiceImpl  implements UserService {
@@ -72,5 +76,36 @@ public class UserServiceImpl  implements UserService {
     @LogException
     public UserVo selectByIdAndPw(LoginDTO loginDto) {
         return userDAO.selectByIdAndPw(loginDto);
+    }
+
+    // 아이디 찾기
+    @Override
+    @LogException
+    public HashMap<String, Object> getUserIdByNickNameAndEmail(UserVo param) {
+        return userDAO.getUserIdByNickNameAndEmail(param);
+    }
+    
+    // 비밀번호 찾기 질문
+    @Override
+    @LogException
+    public List<QuestionVo> getJoinQuestionList() {
+        return userDAO.getJoinQuestionList();
+    }
+    
+    //  비밀번호 찾기 질문 조회
+    @Override
+    @LogException
+    public HashMap<String, Object> getUserQuestionById(UserVo param) {
+        return userDAO.getUserQuestionById(param);
+    }
+
+    //  비밀번호 질문 답변
+    public UserVo getUserPwByfindAnswer(UserVo param) {
+        return userDAO.getUserPwByfindAnswer(param);
+    }
+
+    //  임시 비밀번호 발급
+    public void getUserUpdatePw(UserVo param) {
+        userDAO.getUserUpdatePw(param);
     }
 }

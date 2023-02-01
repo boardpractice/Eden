@@ -14,10 +14,12 @@
 package com.eden.euphoria.user.controller;
 
 import com.eden.euphoria.commons.annotation.LogException;
+import com.eden.euphoria.user.dto.QuestionVo;
 import com.eden.euphoria.user.dto.UserVo;
 import com.eden.euphoria.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/user/*")
@@ -36,16 +39,22 @@ public class UserController {
     //  회원가입 페이지
     @GetMapping(value = "register")
     @LogException
-    public String register(@ModelAttribute("userVo") UserVo param) {
+    public String register(Model model, @ModelAttribute("userVo") UserVo param) {
+
+        model.addAttribute("data", userService.getJoinQuestionList());
+
         return "user/register";
     }
 
     //  회원가입 프로세스
     @PostMapping(value = "insertUserProcess")
     @LogException
-    public String insertUserProcess(@Valid UserVo param, BindingResult result) {
+    public String insertUserProcess(Model model, @Valid UserVo param, BindingResult result) {
 
         if (result.hasErrors()) {
+
+            model.addAttribute("data", userService.getJoinQuestionList());
+
             return "user/register";
         }
 

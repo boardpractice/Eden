@@ -193,6 +193,34 @@
 
                     <div class="row mt-1">
                         <div class="col">
+                            <form:select path="question_no" class="form-select" id="userQuestion">
+                                <c:forEach items="${data}" var="question">
+                                    <form:option value="${question.question_no}">
+                                        ${question.question_content}
+                                    </form:option>
+                                </c:forEach>
+                            </form:select>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col fs-5"><form:input class="form-control" id="userFindAnswer" path="user_findAnswer"
+                                                          type="text" placeholder="비밀번호 찾기 정답을 입력해주세요" aria-label="default input example" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col my-auto"><form:errors path="user_findAnswer" id="error_message" /></div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-7 bi bi-exclamation-square-fill orange" style="font-size : 10px;">
+                            비밀번호 찾기 답변은 고객님의 비밀번호 분실시 이용됩니다. 신중하게 기입해주시기 바랍니다.
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col">
                             <a type="button" class="btn btn-default pull-left" href="../main/main">취소</a>
                             <button type="button" class="btn btn-primary infoModBtn pull-right" id="joinButton">가입하기
                             </button>
