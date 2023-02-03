@@ -57,4 +57,11 @@ public class BoardServiceImpl implements BoardService {
         }
         return dataList;
     }
+
+    //  게시글 작성
+    @Override
+    @LogException
+    public void insertBoard(BoardVo param) {
+        boardDAO.insertBoard(param);
+    }
 }

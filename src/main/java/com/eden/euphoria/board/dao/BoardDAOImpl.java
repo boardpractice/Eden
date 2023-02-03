@@ -14,6 +14,7 @@
 package com.eden.euphoria.board.dao;
 
 import com.eden.euphoria.board.dto.BoardVo;
+import com.eden.euphoria.commons.annotation.LogException;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,7 +30,16 @@ public class BoardDAOImpl implements BoardDAO {
     SqlSession sqlSession;
 
     //  게시글 목록
+    @Override
+    @LogException
     public List<BoardVo> getBoardList() {
         return sqlSession.selectList(NAMESPACE +".getBoardList");
+    }
+
+    //  게시글 작성
+    @Override
+    @LogException
+    public void insertBoard(BoardVo param) {
+        sqlSession.insert(NAMESPACE + ".write", param);
     }
 }

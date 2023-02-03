@@ -24,6 +24,25 @@
 
     <div class="content-wrapper">
         <section class="content container-fluid">
+            <div class="box-header with-border">
+                <form action="../board/list" method="get">
+                    <div class="row mt-3">
+                        <div class="col">
+                            <select name ="category" class="form-select">
+                                <option value="title">제목</option>
+                                <option value="content">내용</option>
+                                <option value="nick">닉네임</option>
+                            </select>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" name="keyword" class="form-control" placeholder="검색할 단어를 입력하세요">
+                        </div>
+                        <div class="col d-grid">
+                            <input type="submit" value="검색" class="btn btn-primary">
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="box-body">
                 <table class="table table-bordered">
                     <thead>
@@ -48,25 +67,6 @@
                     </tbody>
                 </table>
 
-            </div>
-            <div class="box-footer">
-                <div class="form-group col-sm-2">
-                    <select name="category" class="form-select">
-                        <option value="title">제목</option>
-                        <option value="content">내용</option>
-                        <option value="nick">닉네임</option>
-                    </select>
-                </div>
-                <div class="form-group col-sm-10">
-                    <div class="input-group">
-                        <input type="text" name="keyword" class="form-control" placeholder="검색할 단어를 입력하세요">
-                        <span class="input-group-btn">
-                                    <button type="button" class="btn btn-primary btn-flat" id="searchBtn">
-                                        <i class="fa fa-search"></i> 검색
-                                    </button>
-                                </span>
-                    </div>
-                </div>
             </div>
             <div class="box-footer">
                 <div class="pull-right">

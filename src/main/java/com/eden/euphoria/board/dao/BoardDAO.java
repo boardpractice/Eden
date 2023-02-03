@@ -21,4 +21,7 @@ public interface BoardDAO {
 
     //  게시글 목록
     public List<BoardVo> getBoardList();
+
+    //  게시글 작성
+    public void insertBoard(BoardVo param);
 }

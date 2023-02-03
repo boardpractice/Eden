@@ -13,6 +13,8 @@
 
 package com.eden.euphoria.board.service;
 
+import com.eden.euphoria.board.dto.BoardVo;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -20,4 +22,7 @@ public interface BoardService {
 
     //  게시글 목록
     public ArrayList<HashMap<String, Object>> getBoardList();
+
+    //  게시글 작성
+    public void insertBoard(BoardVo param);
 }

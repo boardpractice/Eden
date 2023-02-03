@@ -2,7 +2,20 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.board.BoardSQLMapper">
+
+    <!-- 게시글 목록 -->
     <select id="getBoardList" resultType="BoardVo">
         select * from eden_board
     </select>
+
+    <!-- 게시글 작성 -->
+    <insert id="write">
+        insert into eden_board(user_no, board_title, board_content, board_readcount, board_write_date)
+        VALUES (#{user_no},
+                #{board_title},
+                #{board_content},
+                0,
+                now())
+    </insert>
+
 </mapper>
