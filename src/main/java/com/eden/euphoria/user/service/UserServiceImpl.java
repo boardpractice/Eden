@@ -123,4 +123,21 @@ public class UserServiceImpl  implements UserService {
     public UserVo checkLoginBefore(String value) {
         return userDAO.checkUserWithSessionKey(value);
     }
+
+    // 회원정보 조회
+    public UserVo getUser(String user_id) {
+        return userDAO.getUser(user_id);
+    }
+
+    //  회원정보 수정
+    @Override
+    @LogException
+    public void updateUserInfo(UserVo param) {
+        userDAO.updateUserInfo(param);
+    }
+
+    //  회원정보 탈퇴
+    public void deleteUserInfoByUserNo(UserVo param) {
+        userDAO.deleteUserInfoByUserNo(param);
+    }
 }

@@ -98,4 +98,29 @@
           AND sessionlimit > NOW()
     </select>
 
+    <!-- 회원정보 조회 -->
+    <select id="getUser" resultType="UserVo">
+        select * from eden_user WHERE user_id = #{user_id}
+    </select>
+
+    <!-- 회원정보 수정 -->
+    <update id="updateUserInfo">
+        update eden_user
+        SET question_no     = #{question_no},
+            user_nickname   = #{user_nickname},
+            user_phone      = #{user_phone},
+            user_email      = #{user_email},
+            user_findAnswer = #{user_findAnswer}
+        where user_id = #{user_id}
+    </update>
+
+    <!-- 회원정보 탈퇴 -->
+    <update id="deleteUserInfoByUserNo">
+        UPDATE eden_user SET
+            user_status = 'Inactive',
+            sessionKey = 'none'
+        WHERE user_no = #{user_no}
+          AND user_pw = #{user_pw}
+    </update>
+
 </mapper>

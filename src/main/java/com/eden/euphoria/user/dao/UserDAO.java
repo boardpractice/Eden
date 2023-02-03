@@ -62,4 +62,13 @@ public interface UserDAO {
     // Session Key 확인
     public UserVo checkUserWithSessionKey(String value);
 
+    //  회원정보 조회
+    public UserVo getUser(String user_id);
+
+    //  회원정보 수정
+    public void updateUserInfo(UserVo param);
+
+    //  회원정보 탈퇴
+    public void deleteUserInfoByUserNo(UserVo param);
+
 }

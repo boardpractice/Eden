@@ -62,4 +62,12 @@ public class UserController {
         return "redirect:../main/main";
     }
 
+    // 내정보 페이지
+    @GetMapping("profile")
+    public String profile(Model model) {
+
+        model.addAttribute("data", userService.getJoinQuestionList());
+
+        return "user/profile";
+    }
 }

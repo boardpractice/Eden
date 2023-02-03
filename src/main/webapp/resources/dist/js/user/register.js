@@ -293,6 +293,7 @@ window.addEventListener("DOMContentLoaded", function () {
             $("#checkEmail").attr("disabled", true);
             $("#joinButton").attr("disabled", false);
             $("#userEmail").attr("disabled", false);
+            $("#updateInfo").attr("disabled", false);
         }
     });
 

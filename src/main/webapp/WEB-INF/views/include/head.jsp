@@ -74,5 +74,6 @@ Purpose : head tag include jsp file
     <script src="/dist/js/user/register.js" type="text/javascript"></script>
     <script src="/dist/js/user/login.js" type="text/javascript"></script>
     <script src="/dist/js/user/findUserInfo.js" type="text/javascript"></script>
+    <script src="/dist/js/user/profile.js" type="text/javascript"></script>
 
 </head>

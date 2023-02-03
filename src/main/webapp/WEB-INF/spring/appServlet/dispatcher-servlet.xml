@@ -58,6 +58,12 @@
     <beans:bean id="autoLoginInterceptor" class="com.eden.euphoria.commons.interceptor.AutoLoginInterceptor" />
 
     <interceptors>
+
+        <interceptor>
+            <mapping path="/user/profile"/>
+            <beans:ref bean="loginInterceptor" />
+        </interceptor>
+
         <interceptor>
             <mapping path="/user/register"/>
             <beans:ref bean="loginAfterInterceptor" />

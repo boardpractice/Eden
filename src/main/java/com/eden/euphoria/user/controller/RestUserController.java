@@ -295,7 +295,7 @@ public class RestUserController {
         }
         return data;
     }
-    
+
     //  비밀번호 찾기 - 수정
     @PostMapping("getUserUpdatePw")
     @LogException
@@ -310,6 +310,96 @@ public class RestUserController {
             userService.getUserUpdatePw(param);
         } else {
             data.put("result", "fail");
+        }
+        return data;
+    }
+
+    //  회원정보 수정
+    @PostMapping("updateUserInfo")
+    public HashMap<String, Object> updateUserInfo(UserVo param, HttpSession session) {
+
+        HashMap<String, Object> data = new HashMap<String, Object>();
+
+        UserVo sessionUser = userService.getUser(param.getUser_id());
+
+        if (sessionUser != null) {
+            data.put("result", "success");
+            userService.updateUserInfo(param);
+        } else {
+            data.put("result", "fail");
+        }
+        return data;
+    }
+
+    //  현재 비밀번호 체크
+    @PostMapping("checkPw")
+    @LogException
+    public HashMap<String, Object> checkPw(String current_password, String user_id) {
+
+        HashMap<String, Object> data = new HashMap<>();
+
+        UserVo userVo = userService.getUser(user_id);
+
+        if (userVo != null) {
+            if (BCrypt.checkpw(current_password, userVo.getUser_pw())) {
+                data.put("result", "success");
+            } else {
+                data.put("result", "fail");
+            }
+        }
+
+        return data;
+    }
+
+    //  비밀번호 수정
+    @PostMapping(value = "modifyPassword")
+    @LogException
+    public HashMap<String, Object> modifyPassword(UserVo userVo, HttpSession session) {
+
+        HashMap<String, Object> data = new HashMap<>();
+
+        UserVo sessionUser = userService.getUser(userVo.getUser_id());
+
+        if (sessionUser != null) {
+
+            /* 비밀번호 변경 */
+            String changePassword = BCrypt.hashpw(userVo.getUser_pw(), BCrypt.gensalt());
+            sessionUser.setUser_pw(changePassword);
+            userService.getUserUpdatePw(sessionUser);
+
+            /* 비밀번호 변경후 로그아웃 */
+            session.invalidate();
+        }
+
+        return data;
+    }
+
+    //  회원탈퇴
+    @PostMapping(value = "deleteUserInfoByUserNo")
+    public HashMap<String, Object> deleteUserInfoByUserNo(UserVo vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+
+        HashMap<String, Object> data = new HashMap<String, Object>();
+
+        UserVo sessionUser = (UserVo) session.getAttribute("sessionUser");
+        String password = vo.getUser_pw();
+
+        if (!BCrypt.checkpw(vo.getUser_pw(), sessionUser.getUser_pw())) {
+            data.put("result", "fail");
+        } else {
+            data.put("result", "success");
+
+            Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+            if (loginCookie != null) {
+                loginCookie.setPath("/");
+                // 쿠키 유효기간 0
+                loginCookie.setMaxAge(0);
+                // 쿠키 저장
+                response.addCookie(loginCookie);
+                // 로그인 유지 갱신
+                userService.keepLogin(sessionUser.getUser_id(), "none", new Date());
+            }
+            userService.deleteUserInfoByUserNo(sessionUser);
+            session.invalidate();
         }
         return data;
     }
