@@ -45,3 +45,17 @@ ALTER TABLE eden_user add column sessionkey varchar(50) NOT NULL DEFAULT 'none';
 
 -- 세션 유효시간 : 유효한 기간에 다시 접속을 했는지 판단
 ALTER TABLE eden_user add column sessionlimit timestamp default now();
+
+-- 게시판 테이블
+drop table eden_board;
+create table eden_board(
+    board_no int(11) primary key auto_increment,
+    user_no int(11) not null,
+    board_title varchar(2000) not null default '제목',
+    board_content varchar(4000) not null default '내용',
+    board_readcount int(11) not null default 0,
+    board_write_date timestamp not null default now(),
+    constraint board_userNo foreign key(user_no) references eden_user(user_no)
+);
+
+insert into eden_board(board_no, user_no, board_title, board_content, board_readcount, board_write_date) values(1, 1, '제목', '내용', 0, now());

@@ -70,6 +70,9 @@ Purpose : head tag include jsp file
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li><a href="${path}/board/list"> <i class="fa-thin fa-user-magnifying-glass"></i><span>자유게시판</span></a></li>
+                </ul>
             </li>
 
             <li class="treeview active">

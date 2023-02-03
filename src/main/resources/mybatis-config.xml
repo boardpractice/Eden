@@ -6,5 +6,6 @@
     <typeAliases>
         <typeAlias type="com.eden.euphoria.user.dto.UserVo" alias="UserVo" />
         <typeAlias type="com.eden.euphoria.user.dto.QuestionVo" alias="QuestionVo" />
+        <typeAlias type="com.eden.euphoria.board.dto.BoardVo" alias="BoardVo" />
     </typeAliases>
 </configuration>
