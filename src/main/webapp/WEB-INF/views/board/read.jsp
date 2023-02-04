@@ -34,6 +34,7 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">글제목 : ${data.boardVo.board_title}</h3>
                         <ul class="list-inline pull-right">
+                            <li><a href="#" class="link-black text-lg" id="likeCount"></a></li>
                             <li><a href="#" class="link-black text-lg"><i class="fa fa-eye"></i>조회수
                                 (${data.boardVo.board_readcount})</a></li>
                         </ul>
@@ -67,9 +68,13 @@
 
                     <div class="box-footer">
                         <form role="form" method="post">
-                            <input type="hidden" name="board_no" value="${data.boardVo.board_no}">
+                            <input type="hidden" id="boardNo" name="board_no" value="${data.boardVo.board_no}">
+                            <input type="hidden" id="userNo" name="user_no" value="${data.userVo.user_no}">
                         </form>
                         <button class="btn btn-primary listBtn"><i class="fa fa-list"></i> 목록</button>
+                        <c:if test="${!empty sessionUser}">
+                            <button type="button" class="btn btn-info boardLike"><i class="fa-regular fa-thumbs-up" id="like"></i> 좋아요</button>
+                        </c:if>
                         <c:if test="${sessionUser.user_no == data.boardVo.user_no}">
                             <div class="pull-right">
                                 <button type="submit" class="btn btn-warning modBtn"><i class="fa fa-edit"></i> 수정

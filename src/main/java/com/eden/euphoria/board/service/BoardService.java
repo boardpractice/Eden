@@ -13,6 +13,7 @@
 
 package com.eden.euphoria.board.service;
 
+import com.eden.euphoria.board.dto.BoardLikeVo;
 import com.eden.euphoria.board.dto.BoardVo;
 
 import java.util.ArrayList;
@@ -34,4 +35,13 @@ public interface BoardService {
 
     //  게시글 삭제
     public void deleteBoard(int board_no);
+
+    //  게시글 좋아요
+    public void doLike(BoardLikeVo likeVo);
+
+    //  게시글 좋아요 상태
+    public int getMyLikeCount(BoardLikeVo likeVo);
+
+    //  게시글 좋아요 총 갯수
+    public int getTotalLikeCount(int board_no);
 }

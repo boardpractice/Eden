@@ -59,3 +59,14 @@ create table eden_board(
 );
 
 insert into eden_board(board_no, user_no, board_title, board_content, board_readcount, board_write_date) values(1, 1, '제목', '내용', 0, now());
+
+-- 게시판 좋아요 테이블
+drop table eden_board_like;
+create table eden_board_like(
+    like_no int(11) primary key AUTO_INCREMENT,
+    user_no int(11) not null,
+    board_no int(11) not null,
+    like_date timestamp not null default now(),
+    constraint like_userNo foreign key (user_no) references eden_user(user_no),
+    constraint like_boardNo foreign key (board_no) references eden_board(board_no)
+);

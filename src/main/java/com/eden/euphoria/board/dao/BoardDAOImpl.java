@@ -13,6 +13,7 @@
 
 package com.eden.euphoria.board.dao;
 
+import com.eden.euphoria.board.dto.BoardLikeVo;
 import com.eden.euphoria.board.dto.BoardVo;
 import com.eden.euphoria.commons.annotation.LogException;
 import org.apache.ibatis.session.SqlSession;
@@ -62,5 +63,33 @@ public class BoardDAOImpl implements BoardDAO {
     @LogException
     public void deleteBoard(int board_no) {
         sqlSession.delete(NAMESPACE + ".deleteBoard", board_no);
+    }
+
+    //  게시글 좋아요
+    @Override
+    @LogException
+    public void doLike(BoardLikeVo likeVo) {
+        sqlSession.insert(NAMESPACE + ".doLike", likeVo);
+    }
+
+    //  게시글 좋아요 상태
+    @Override
+    @LogException
+    public int getMyLikeCount(BoardLikeVo likeVo) {
+        return sqlSession.selectOne(NAMESPACE + ".getMyLikeCount", likeVo);
+    }
+
+    //  게시글 좋아요 취소
+    @Override
+    @LogException
+    public void deleteLike(BoardLikeVo likeVo) {
+        sqlSession.delete(NAMESPACE + ".deleteLike", likeVo);
+    }
+
+    //  게시글 좋아요 총 갯수
+    @Override
+    @LogException
+    public int getTotalLikeCount(int board_no) {
+        return sqlSession.selectOne(NAMESPACE + ".getTotalLikeCount", board_no);
     }
 }

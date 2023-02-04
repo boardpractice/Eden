@@ -49,9 +49,9 @@ public class LogAdvice {
     @AfterReturning(value = "@annotation(com.eden.euphoria.commons.annotation.LogException)", returning = "result")
     public void AfterReturning(JoinPoint joinPoint, Object result) {
 
-        System.out.println("실행된 클래스 : " + joinPoint.getTarget().getClass().getSimpleName());
-        System.out.println("실행된 메서드 : " + joinPoint.getSignature().getName());
-        System.out.println("전달된 파라미터 : " + Arrays.toString(joinPoint.getArgs()));
+//        System.out.println("실행된 클래스 : " + joinPoint.getTarget().getClass().getSimpleName());
+//        System.out.println("실행된 메서드 : " + joinPoint.getSignature().getName());
+//        System.out.println("전달된 파라미터 : " + Arrays.toString(joinPoint.getArgs()));
 
     }
 }

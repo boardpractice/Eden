@@ -14,6 +14,7 @@
 package com.eden.euphoria.board.service;
 
 import com.eden.euphoria.board.dao.BoardDAO;
+import com.eden.euphoria.board.dto.BoardLikeVo;
 import com.eden.euphoria.board.dto.BoardVo;
 import com.eden.euphoria.board.dto.Timer;
 import com.eden.euphoria.commons.annotation.LogException;
@@ -92,5 +93,30 @@ public class BoardServiceImpl implements BoardService {
     @LogException
     public void deleteBoard(int board_no) {
         boardDAO.deleteBoard(board_no);
+    }
+
+    //  게시글 좋아요
+    @Override
+    @LogException
+    public void doLike(BoardLikeVo likeVo) {
+        if (getMyLikeCount(likeVo) < 1) {
+            boardDAO.doLike(likeVo);
+        } else {
+            boardDAO.deleteLike(likeVo);
+        }
+    }
+
+    //  게시글 좋아요 상태
+    @Override
+    @LogException
+    public int getMyLikeCount(BoardLikeVo likeVo) {
+        return boardDAO.getMyLikeCount(likeVo);
+    }
+
+    //  게시글 좋아요 총 갯수
+    @Override
+    @LogException
+    public int getTotalLikeCount(int board_no) {
+        return boardDAO.getTotalLikeCount(board_no);
     }
 }

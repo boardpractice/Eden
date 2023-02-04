@@ -33,9 +33,33 @@
         where board_no = #{board_no}
     </update>
 
+    <!-- 게시글 삭제 -->
     <delete id="deleteBoard">
         delete
         from eden_board
         where board_no = #{board_no}
     </delete>
+
+    <!-- 게시글 좋아요 -->
+    <insert id="doLike">
+        insert into eden_board_like (user_no, board_no, like_date)
+        values (#{user_no}, #{board_no}, now())
+    </insert>
+
+    <!-- 게시글 좋아요 상태 -->
+    <select id="getMyLikeCount" resultType="int">
+        select count(*) from eden_board_like where user_no = #{user_no} and board_no = #{board_no}
+    </select>
+
+    <!-- 게시글 좋아요 취소 -->
+    <delete id="deleteLike">
+        delete
+        from eden_board_like
+        where board_no = #{board_no} and user_no = #{user_no}
+    </delete>
+
+    <!-- 게시글 좋아요 총 갯수 -->
+    <select id="getTotalLikeCount" resultType="int">
+        select count(*) from eden_board_like where board_no = #{board_no}
+    </select>
 </mapper>
