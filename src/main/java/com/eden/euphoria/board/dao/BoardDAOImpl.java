@@ -33,7 +33,7 @@ public class BoardDAOImpl implements BoardDAO {
     @Override
     @LogException
     public List<BoardVo> getBoardList() {
-        return sqlSession.selectList(NAMESPACE +".getBoardList");
+        return sqlSession.selectList(NAMESPACE + ".getBoardList");
     }
 
     //  게시글 작성
@@ -44,7 +44,23 @@ public class BoardDAOImpl implements BoardDAO {
     }
 
     //  게시글 상세보기
+    @Override
+    @LogException
     public BoardVo getBoardByNo(int board_no) {
         return sqlSession.selectOne(NAMESPACE + ".getBoardByNo", board_no);
+    }
+
+    //  게시글 수정
+    @Override
+    @LogException
+    public void updateBoard(BoardVo param) {
+        sqlSession.update(NAMESPACE + ".updateBoard", param);
+    }
+
+    //  게시글 삭제
+    @Override
+    @LogException
+    public void deleteBoard(int board_no) {
+        sqlSession.delete(NAMESPACE + ".deleteBoard", board_no);
     }
 }

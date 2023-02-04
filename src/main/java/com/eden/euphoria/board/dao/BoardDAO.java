@@ -27,4 +27,10 @@ public interface BoardDAO {
 
     //  게시글 상세보기
     public BoardVo getBoardByNo(int board_no);
+
+    //  게시글 수정
+    public void updateBoard(BoardVo param);
+
+    //  게시글 삭제
+    public void deleteBoard(int board_no);
 }

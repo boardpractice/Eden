@@ -79,4 +79,18 @@ public class BoardServiceImpl implements BoardService {
 
         return map;
     }
+
+    //  게시글 수정
+    @Override
+    @LogException
+    public void updateBoard(BoardVo param) {
+        boardDAO.updateBoard(param);
+    }
+
+    //  게시글 삭제
+    @Override
+    @LogException
+    public void deleteBoard(int board_no) {
+        boardDAO.deleteBoard(board_no);
+    }
 }

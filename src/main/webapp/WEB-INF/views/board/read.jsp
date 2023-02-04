@@ -67,9 +67,9 @@
 
                     <div class="box-footer">
                         <form role="form" method="post">
-                            <input type="hidden" name="bno" value="${data.boardVo.board_no}">
+                            <input type="hidden" name="board_no" value="${data.boardVo.board_no}">
                         </form>
-                        <a href="../board/list" class="btn btn-primary listBtn"><i class="fa fa-list"></i> 목록</a>
+                        <button class="btn btn-primary listBtn"><i class="fa fa-list"></i> 목록</button>
                         <c:if test="${sessionUser.user_no == data.boardVo.user_no}">
                             <div class="pull-right">
                                 <button type="submit" class="btn btn-warning modBtn"><i class="fa fa-edit"></i> 수정

@@ -24,4 +24,18 @@
         from eden_board
         where board_no = #{board_no}
     </select>
+
+    <!-- 게시글 수정 -->
+    <update id="updateBoard">
+        update eden_board
+        SET board_title   = #{board_title},
+            board_content = #{board_content}
+        where board_no = #{board_no}
+    </update>
+
+    <delete id="deleteBoard">
+        delete
+        from eden_board
+        where board_no = #{board_no}
+    </delete>
 </mapper>

@@ -21,10 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -82,5 +79,35 @@ public class BoardController {
         model.addAttribute("data", boardService.getBoard(board_no));
 
         return "board/read";
+    }
+
+    //  게시글 수정
+    @PostMapping(value = "modify")
+    @LogException
+    public String modify(Model model, @RequestParam(value = "board_no", defaultValue = "0") int boardNo) {
+
+        model.addAttribute("data", boardService.getBoard(boardNo));
+
+        return "board/modify";
+    }
+
+    //  게시글 수정 프로시져
+    @PostMapping(value = "modifyProcess")
+    @LogException
+    public String modifyProcess(BoardVo boardVo) {
+
+        boardService.updateBoard(boardVo);
+
+        return "redirect:../board/list";
+    }
+
+    //  게시글 삭제 프로시져
+    @PostMapping(value = "delete")
+    @LogException
+    public String delete(int board_no) {
+
+        boardService.deleteBoard(board_no);
+
+        return "redirect:../board/list";
     }
 }
