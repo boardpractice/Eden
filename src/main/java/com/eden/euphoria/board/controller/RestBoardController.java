@@ -101,9 +101,6 @@ public class RestBoardController {
 
         int totalLikeCount = boardService.getTotalLikeCount(board_no);
         data.put("totalLikeCount", totalLikeCount);
-
-        System.out.println("발동");
-
         return data;
     }
 }
