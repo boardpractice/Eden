@@ -62,7 +62,7 @@ Purpose : head tag include jsp file
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">메뉴</li>
             <%-- Optionally, you can add icons to the links --%>
-            <li class="treeview ">
+            <li class="treeview active">
                 <a href="#">
                     <i class="fa fa-clipboard"></i>
                     <span>게시판</span>
@@ -75,7 +75,7 @@ Purpose : head tag include jsp file
                 </ul>
             </li>
 
-            <li class="treeview active">
+            <li class="treeview">
                 <a href="#">
                     <i class="fa-solid fa-user"></i>
                     <span>계정관리</span>

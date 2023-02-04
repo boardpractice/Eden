@@ -42,4 +42,9 @@ public class BoardDAOImpl implements BoardDAO {
     public void insertBoard(BoardVo param) {
         sqlSession.insert(NAMESPACE + ".write", param);
     }
+
+    //  게시글 상세보기
+    public BoardVo getBoardByNo(int board_no) {
+        return sqlSession.selectOne(NAMESPACE + ".getBoardByNo", board_no);
+    }
 }

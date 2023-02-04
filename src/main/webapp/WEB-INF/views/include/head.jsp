@@ -77,4 +77,13 @@ Purpose : head tag include jsp file
     <script src="/dist/js/user/profile.js" type="text/javascript"></script>
     <script src="/dist/js/user/userRecovery.js" type="text/javascript"></script>
 
+    <script type="text/javascript">
+        function goPage(boardNo) {
+            var formObj = $("form[name='readForm']");
+            $("#BOARD_NO").attr("value", boardNo);
+            formObj.attr("method", "post");
+            formObj.attr("action", "/board/read")
+            formObj.submit();
+        }
+    </script>
 </head>

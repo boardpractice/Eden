@@ -8,7 +8,7 @@
 작성일시 : 2023-02-04
 작성자 : Eden
 작성시간 : 오전 12:36
-용도 : 
+용도 : board write web view page
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>

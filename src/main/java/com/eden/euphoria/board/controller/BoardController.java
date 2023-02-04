@@ -57,7 +57,9 @@ public class BoardController {
         return "board/write";
     }
 
+    //  게시글 작성 프로시저
     @PostMapping(value = "writeProcess")
+    @LogException
     public String writeProcess(@Valid BoardVo param, BindingResult result, HttpSession session) {
 
         if (result.hasErrors()) {
@@ -70,5 +72,15 @@ public class BoardController {
         boardService.insertBoard(param);
 
         return "redirect:../board/list";
+    }
+
+    //  게시글 보기 페이지
+    @PostMapping(value = "read")
+    @LogException
+    public String read(int board_no, Model model) {
+
+        model.addAttribute("data", boardService.getBoard(board_no));
+
+        return "board/read";
     }
 }

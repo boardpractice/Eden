@@ -8,7 +8,7 @@
 작성일시 : 2023-02-03
 작성자 : Eden
 작성시간 : 오후 8:42
-용도 : 
+용도 : board list web view page
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -23,12 +23,15 @@
     <%@ include file="../include/left_menu.jsp" %>
 
     <div class="content-wrapper">
+        <form name="readForm" role="form" method="post">
+            <input type="hidden" id="BOARD_NO" name="board_no" value="">
+        </form>
         <section class="content container-fluid">
             <div class="box-header with-border">
                 <form action="../board/list" method="get">
                     <div class="row mt-3">
                         <div class="col">
-                            <select name ="category" class="form-select">
+                            <select name="category" class="form-select">
                                 <option value="title">제목</option>
                                 <option value="content">내용</option>
                                 <option value="nick">닉네임</option>
@@ -58,7 +61,9 @@
                     <c:forEach items="${dataList }" var="data">
                         <tr>
                             <td class="text-center">${data.boardVo.board_no}</td>
-                            <td class="text-center">${data.boardVo.board_title}</td>
+                            <td class="text-center"><a
+                                    href="javascript:goPage(${data.boardVo.board_no});">${data.boardVo.board_title }</a>
+                            </td>
                             <td class="text-center">${data.userVo.user_nickname}</td>
                             <td class="text-center">${data.boardTime}</td>
                             <td class="text-center">${data.boardVo.board_readcount}</td>
@@ -83,4 +88,5 @@
 </div>
 
 <%@ include file="../include/plugin_js.jsp" %>
+
 </body>

@@ -64,4 +64,19 @@ public class BoardServiceImpl implements BoardService {
     public void insertBoard(BoardVo param) {
         boardDAO.insertBoard(param);
     }
+
+    //  게시글 상세보기
+    @Override
+    @LogException
+    public HashMap<String, Object> getBoard(int board_no) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+
+        BoardVo boardVo = boardDAO.getBoardByNo(board_no);
+        UserVo userVo = userDAO.getUserByNo(boardVo.getUser_no());
+
+        map.put("userVo", userVo);
+        map.put("boardVo", boardVo);
+
+        return map;
+    }
 }

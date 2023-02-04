@@ -18,4 +18,10 @@
                 now())
     </insert>
 
+    <!-- 게시글 상세보기 페이지 -->
+    <select id="getBoardByNo" resultType="BoardVo">
+        select *
+        from eden_board
+        where board_no = #{board_no}
+    </select>
 </mapper>

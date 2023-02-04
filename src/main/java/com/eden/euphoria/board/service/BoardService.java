@@ -25,4 +25,7 @@ public interface BoardService {
 
     //  게시글 작성
     public void insertBoard(BoardVo param);
+
+    //  게시글 상세보기
+    public HashMap<String, Object> getBoard(int board_no);
 }
