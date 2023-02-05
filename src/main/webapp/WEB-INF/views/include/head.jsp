@@ -77,6 +77,7 @@ Purpose : head tag include jsp file
     <script src="/dist/js/user/profile.js" type="text/javascript"></script>
     <script src="/dist/js/user/userRecovery.js" type="text/javascript"></script>
     <script src="/dist/js/board/Bulletin.js" type="text/javascript"></script>
+    <script src="/dist/js/comment/Comment.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         function goPage(boardNo) {

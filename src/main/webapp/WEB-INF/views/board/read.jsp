@@ -15,7 +15,8 @@
 
 <%@ include file="../include/head.jsp" %>
 <html>
-<body class="hold-transition sidebar-mini" oncopy="return false" oncut="return false" onpaste="return false">
+<body class="hold-transition skin-green-light sidebar-mini" oncopy="return false" oncut="return false"
+      onpaste="return false">
 <div class="wrapper">
 
     <%@ include file="../include/top_menu.jsp" %>
@@ -73,7 +74,9 @@
                         </form>
                         <button class="btn btn-primary listBtn"><i class="fa fa-list"></i> 목록</button>
                         <c:if test="${!empty sessionUser}">
-                            <button type="button" class="btn btn-info boardLike"><i class="fa-regular fa-thumbs-up" id="like"></i> 좋아요</button>
+                            <button type="button" class="btn btn-info boardLike"><i class="fa-regular fa-thumbs-up"
+                                                                                    id="like"></i> 좋아요
+                            </button>
                         </c:if>
                         <c:if test="${sessionUser.user_no == data.boardVo.user_no}">
                             <div class="pull-right">
@@ -83,6 +86,69 @@
                                 </button>
                             </div>
                         </c:if>
+                    </div>
+                </div>
+
+                <%--댓글 입력 영역--%>
+                <c:if test="${!empty sessionUser}">
+                    <div class="box box-warning">
+                        <div class="box-header with-border">
+                            <a class="link-black text-lg"><i class="fa fa-pencil"></i> 댓글작성</a>
+                        </div>
+                        <div class="box-body">
+                            <form class="form-horizontal">
+                                <div class="form-group margin-bottom-none">
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" id="newReplyText" rows="3"
+                                                  placeholder="댓글을 입력해주세요..." style="resize: none"></textarea>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" id="newReplyWriter" type="text" value="${sessionUser.user_nickname}"
+                                               readonly="readonly">
+                                    </div>
+                                    <hr/>
+                                    <div class="col-sm-2">
+                                        <button type="button" class="btn btn-primary btn-block replyAddBtn"><i
+                                                class="fa fa-save"></i> 저장
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </c:if>
+                <c:if test="${empty sessionUser}">
+                    <div class="box box-warning">
+                        <div class="box-header with-border">
+                            <p><i class="fa fa-pencil"></i> 댓글 작성을 위해 <a href="${path}/user/login"
+                                                                         class="link-black text-lg">로그인</a>해주세요</p>
+                        </div>
+                    </div>
+                </c:if>
+
+                <%--댓글 목록 영역--%>
+                <div class="box box-success collapsed-box">
+                    <%--댓글 유무 / 댓글 갯수 / 댓글 펼치기, 접기--%>
+                    <div class="box-header with-border">
+                        <a href="" class="link-black text-lg"><i class="fa fa-comments-o margin-r-5 commentCount"></i>
+                        </a>
+                        <div class="box-tools">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <%--댓글 목록--%>
+                    <div class="box-body commentDiv">
+
+                    </div>
+                    <%--댓글 페이징--%>
+                    <div class="box-footer">
+                        <div class="text-center">
+                            <ul class="pagination pagination-sm no-margin">
+
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

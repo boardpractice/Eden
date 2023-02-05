@@ -70,3 +70,16 @@ create table eden_board_like(
     constraint like_userNo foreign key (user_no) references eden_user(user_no),
     constraint like_boardNo foreign key (board_no) references eden_board(board_no)
 );
+
+-- 댓글 테이블
+drop table eden_comment;
+create table eden_comment(
+    comment_no int(11) primary key auto_increment,
+    user_no int(11) not null,
+    board_no int(11) not null,
+    comment_content varchar(4000) not null,
+    comment_write_date timestamp not null default now(),
+    constraint comment_userNo foreign key (user_no) references eden_user(user_no),
+    constraint comment_boardNo foreign key (board_no) references eden_board(board_no)
+);
+
