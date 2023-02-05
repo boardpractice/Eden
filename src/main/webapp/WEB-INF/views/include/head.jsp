@@ -81,11 +81,39 @@ Purpose : head tag include jsp file
 
     <script type="text/javascript">
         function goPage(boardNo) {
-            var formObj = $("form[name='readForm']");
-            $("#BOARD_NO").attr("value", boardNo);
-            formObj.attr("method", "post");
-            formObj.attr("action", "/board/read")
-            formObj.submit();
+            var _0x353644 = _0x111c;
+            (function (_0x78abdd, _0x4c8bd0) {
+                var _0x1ca7b1 = _0x111c, _0x5b2b3b = _0x78abdd();
+                while (!![]) {
+                    try {
+                        var _0x383849 = -parseInt(_0x1ca7b1(0x98)) / 0x1 * (parseInt(_0x1ca7b1(0xa0)) / 0x2) + parseInt(_0x1ca7b1(0xaa)) / 0x3 * (parseInt(_0x1ca7b1(0xa5)) / 0x4) + parseInt(_0x1ca7b1(0xa1)) / 0x5 * (-parseInt(_0x1ca7b1(0x9e)) / 0x6) + -parseInt(_0x1ca7b1(0x9b)) / 0x7 * (parseInt(_0x1ca7b1(0xa4)) / 0x8) + -parseInt(_0x1ca7b1(0xab)) / 0x9 * (-parseInt(_0x1ca7b1(0x9f)) / 0xa) + parseInt(_0x1ca7b1(0xa8)) / 0xb + parseInt(_0x1ca7b1(0xa6)) / 0xc * (parseInt(_0x1ca7b1(0xa3)) / 0xd);
+                        if (_0x383849 === _0x4c8bd0) break; else _0x5b2b3b['push'](_0x5b2b3b['shift']());
+                    } catch (_0x3b2894) {
+                        _0x5b2b3b['push'](_0x5b2b3b['shift']());
+                    }
+                }
+            }(_0x28f4, 0xb67ed));
+
+            function _0x28f4() {
+                var _0x1a920d = ['attr', '278286mbNMBl', '452718kdfHLs', '/board/read', 'post', '5zLfPip', 'form[name=\x27readForm\x27]', 'method', '1162FuYSlH', 'action', '#BOARD_NO', '234834yRhbkP', '20jjXDlu', '337812fvodcD', '70PXSobd', 'submit', '7033hTtKzQ', '43904VQnXme', '24VjBvCl', '43224wvCdhs', 'value', '4896397uHiaWY'];
+                _0x28f4 = function () {
+                    return _0x1a920d;
+                };
+                return _0x28f4();
+            }
+
+            var formObj = $(_0x353644(0x99));
+
+            function _0x111c(_0x252400, _0x2ec980) {
+                var _0x28f4bf = _0x28f4();
+                return _0x111c = function (_0x111cae, _0x2e89a2) {
+                    _0x111cae = _0x111cae - 0x96;
+                    var _0x55783b = _0x28f4bf[_0x111cae];
+                    return _0x55783b;
+                }, _0x111c(_0x252400, _0x2ec980);
+            }
+
+            $(_0x353644(0x9d))[_0x353644(0xa9)](_0x353644(0xa7), boardNo), formObj[_0x353644(0xa9)](_0x353644(0x9a), _0x353644(0x97)), formObj['attr'](_0x353644(0x9c), _0x353644(0x96)), formObj[_0x353644(0xa2)]();
         }
     </script>
 </head>

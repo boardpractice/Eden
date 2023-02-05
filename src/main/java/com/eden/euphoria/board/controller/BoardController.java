@@ -15,6 +15,7 @@ package com.eden.euphoria.board.controller;
 
 import com.eden.euphoria.board.dto.BoardVo;
 import com.eden.euphoria.board.service.BoardService;
+import com.eden.euphoria.comment.service.CommentService;
 import com.eden.euphoria.commons.annotation.LogException;
 import com.eden.euphoria.user.dto.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class BoardController {
 
     @Autowired
     BoardService boardService;
+
+    @Autowired
+    CommentService commentService;
 
     //  게시글 목록
     @GetMapping(value = "list")
@@ -77,7 +81,7 @@ public class BoardController {
     public String read(int board_no, Model model) {
 
         model.addAttribute("data", boardService.getBoard(board_no));
-
+        model.addAttribute("dataList", commentService.getCommentList(board_no));
         return "board/read";
     }
 

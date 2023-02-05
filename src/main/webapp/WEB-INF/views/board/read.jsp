@@ -99,16 +99,17 @@
                             <form class="form-horizontal">
                                 <div class="form-group margin-bottom-none">
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" id="newReplyText" rows="3"
+                                        <textarea class="form-control" id="newCommentText" rows="3"
                                                   placeholder="댓글을 입력해주세요..." style="resize: none"></textarea>
                                     </div>
                                     <div class="col-sm-2">
-                                        <input class="form-control" id="newReplyWriter" type="text" value="${sessionUser.user_nickname}"
+                                        <input class="form-control" id="newCommentWriter" type="text"
+                                               value="${sessionUser.user_nickname}"
                                                readonly="readonly">
                                     </div>
                                     <hr/>
                                     <div class="col-sm-2">
-                                        <button type="button" class="btn btn-primary btn-block replyAddBtn"><i
+                                        <button type="button" class="btn btn-primary btn-block commentAddBtn"><i
                                                 class="fa fa-save"></i> 저장
                                         </button>
                                     </div>
@@ -140,7 +141,33 @@
                     </div>
                     <%--댓글 목록--%>
                     <div class="box-body commentDiv">
-
+                        <c:forEach items="${dataList}" var="comment">
+                            <div class="user-block">
+                                <img class="img-circle img-bordered-sm" src="../dist/img/profile/${comment.userVo.user_image}">
+                                <span class="username">
+                                    <a href="#" id="comment_write">${comment.userVo.user_nickname}</a>
+                                    <a href="#" class="pull-right btn-box-tool replyDelBtn" data-toggle="modal"
+                                       data-target="#delModal">
+                                        <i class="fa fa-times"> 삭제</i>
+                                    </a>
+                                    <a href="#" class="pull-right btn-box-tool replyModBtn" data-toggle="modal"
+                                       data-target="#modModal">
+                                        <i class="fa fa-edit"> 수정</i>
+                                    </a>
+                                </span>
+                                <span class="description" id="writeTime">${comment.write_time}</span>
+                            </div>
+                            <div class="oldReplytext">${comment.commentVo.comment_content}</div>
+                            <br>
+                            <ul class="list-inline">
+                                <li>
+                                    <a href="#" class="link-black text-sm replyLike">
+                                        <i class="fa fa-thumbs-o-up"></i> 추천<span></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <hr style="border : 0px; border-top: 5px #2e383c;"/>
+                        </c:forEach>
                     </div>
                     <%--댓글 페이징--%>
                     <div class="box-footer">
