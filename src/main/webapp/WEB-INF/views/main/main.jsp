@@ -15,7 +15,7 @@ Purpose : Main Web View Page
 
 <%@ include file="../include/head.jsp" %>
 <html>
-<body class="hold-transition sidebar-mini" oncopy="return false" oncut="return false" onpaste="return false">
+<body class="hold-transition skin-green-light sidebar-mini" oncopy="return false" oncut="return false" onpaste="return false">
 <div class="wrapper">
 
     <%@ include file="../include/top_menu.jsp" %>

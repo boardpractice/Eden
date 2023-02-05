@@ -15,7 +15,7 @@ Purpose : Custom Exception Message View Page
 
 <%@ include file="../include/head.jsp" %>
 <html>
-<body class="hold-transition skin-blue-light sidebar-mini" oncopy="return false" oncut="return false"
+<body class="hold-transition skin-green-light sidebar-mini" oncopy="return false" oncut="return false"
       onpaste="return false">
 <div class="wrapper">
 

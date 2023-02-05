@@ -15,7 +15,7 @@
 
 <%@ include file="../include/head.jsp" %>
 <html>
-<body class="hold-transition skin-blue-light sidebar-mini register-page" oncopy="return false" oncut="return false"
+<body class="hold-transition skin-green-light sidebar-mini register-page" oncopy="return false" oncut="return false"
       onpaste="return false">
 <div class="register-box">
     <div class="register-logo">
