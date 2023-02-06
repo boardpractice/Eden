@@ -13,6 +13,8 @@
 
 package com.eden.euphoria.comment.service;
 
+import com.eden.euphoria.comment.dto.CommentVo;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -23,4 +25,7 @@ public interface CommentService {
 
     //  댓글 총 갯수
     public int getTotalCommentCount(int board_no);
+
+    //  댓글 작성
+    public void writeComment(CommentVo commentVo);
 }

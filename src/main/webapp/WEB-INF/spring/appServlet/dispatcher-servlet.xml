@@ -62,6 +62,8 @@
         <interceptor>
             <mapping path="/user/profile"/>
             <mapping path="/board/*" />
+            <mapping path="comment/*" />
+            <exclude-mapping path="/comment/getCommentList"/>
             <exclude-mapping path="/board/list"/>
             <exclude-mapping path="/board/read"/>
             <beans:ref bean="loginInterceptor" />

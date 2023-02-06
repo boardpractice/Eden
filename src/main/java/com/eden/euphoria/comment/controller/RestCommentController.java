@@ -13,12 +13,16 @@
 
 package com.eden.euphoria.comment.controller;
 
+import com.eden.euphoria.comment.dto.CommentVo;
 import com.eden.euphoria.comment.service.CommentService;
+import com.eden.euphoria.commons.annotation.LogException;
+import com.eden.euphoria.user.dto.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 
 @RestController
@@ -40,5 +44,21 @@ public class RestCommentController {
         return data;
     }
 
+    //  댓글 작성
+    @PostMapping(value = "writeComment")
+    @LogException
+    public HashMap<String, Object> writeComment(CommentVo commentVo, HttpSession session) {
 
+        UserVo sessionUser = (UserVo) session.getAttribute("sessionUser");
+
+        if (sessionUser == null) {
+            data.put("result", "fail");
+        } else {
+            int userNo = sessionUser.getUser_no();
+            commentVo.setUser_no(userNo);
+
+            commentService.writeComment(commentVo);
+        }
+        return data;
+    }
 }
