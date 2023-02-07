@@ -11,6 +11,14 @@
 용도 : Find your ID password
 */
 
+function SearchId() {
+    $("#userIdFindModel").modal('show');
+}
+
+function SearchPw() {
+    $("#userPwFindModel").modal('show');
+}
+
 window.addEventListener("DOMContentLoaded", function() {
 
     /* 아이디 찾기 */
