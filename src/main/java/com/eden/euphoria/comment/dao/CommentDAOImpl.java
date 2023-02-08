@@ -13,6 +13,7 @@
 
 package com.eden.euphoria.comment.dao;
 
+import com.eden.euphoria.comment.dto.CommentLikeVo;
 import com.eden.euphoria.comment.dto.CommentVo;
 import com.eden.euphoria.commons.annotation.LogException;
 import org.apache.ibatis.session.SqlSession;
@@ -62,5 +63,33 @@ public class CommentDAOImpl implements CommentDAO {
     @LogException
     public void deleteComment(int comment_no) {
         sqlSession.delete(NAMESPACE + ".deleteComment", comment_no);
+    }
+
+    //  댓글 좋아요
+    @Override
+    @LogException
+    public void doCommentLike(CommentLikeVo like) {
+        sqlSession.insert(NAMESPACE + ".doCommentLike", like);
+    }
+
+    //  댓글 좋아요 상태
+    @Override
+    @LogException
+    public int getMyCommentLikeCount(CommentLikeVo like) {
+        return sqlSession.selectOne(NAMESPACE + ".getMyCommentLikeCount", like);
+    }
+
+    //  댓글 좋아요 삭제
+    @Override
+    @LogException
+    public void deleteCommentLike(CommentLikeVo like) {
+        sqlSession.delete(NAMESPACE + ".deleteCommentLike", like);
+    }
+
+    //  댓글 좋아요 총 갯수
+    @Override
+    @LogException
+    public int getTotalCommentLikeCount(int comment_no) {
+        return sqlSession.selectOne(NAMESPACE + ".getTotalCommentLikeCount", comment_no);
     }
 }

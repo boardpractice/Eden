@@ -5,16 +5,20 @@
 
     <!-- 댓글 목록 -->
     <select id="getCommentList" resultType="CommentVo">
-        select * from eden_comment where board_no = #{board_no}
+        select *
+        from eden_comment
+        where board_no = #{board_no}
     </select>
 
     <!-- 댓글 총 갯수 -->
     <select id="getTotalCommentCount" resultType="int">
-        select count(*) from eden_comment where board_no = #{board_no}
+        select count(*)
+        from eden_comment
+        where board_no = #{board_no}
     </select>
 
     <!-- 댓글 작성 -->
-    <insert id = "writeComment">
+    <insert id="writeComment">
         insert into eden_comment (user_no, board_no, comment_content, comment_write_date)
         values (#{user_no},
                 #{board_no},
@@ -36,4 +40,31 @@
         from eden_comment
         where comment_no = #{comment_no}
     </delete>
+
+    <!-- 댓글 좋아요 -->
+    <insert id="doCommentLike">
+        insert into eden_comment_like (comment_no, user_no, comment_like_date)
+        values (#{comment_no}, #{user_no}, now())
+    </insert>
+
+    <!-- 댓글 좋아요 상태 -->
+    <select id="getMyCommentLikeCount" resultType="int">
+        select count(*)
+        from eden_comment_like
+        where comment_no = #{comment_no}
+          and user_no = #{user_no}
+    </select>
+
+    <!-- 댓글 좋아요 삭제 -->
+    <delete id="deleteCommentLike">
+        delete
+        from eden_comment_like
+        where comment_no = #{comment_no}
+          and user_no = #{user_no}
+    </delete>
+
+    <!-- 댓글 좋아요 총 갯수 -->
+    <select id="getTotalCommentLikeCount" resultType="int">
+        select count(*) from eden_comment_like where comment_no = #{comment_no}
+    </select>
 </mapper>

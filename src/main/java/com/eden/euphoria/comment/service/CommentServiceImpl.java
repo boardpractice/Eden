@@ -14,6 +14,7 @@
 package com.eden.euphoria.comment.service;
 
 import com.eden.euphoria.comment.dao.CommentDAO;
+import com.eden.euphoria.comment.dto.CommentLikeVo;
 import com.eden.euphoria.comment.dto.CommentVo;
 import com.eden.euphoria.commons.annotation.LogException;
 import com.eden.euphoria.user.dao.UserDAO;
@@ -50,7 +51,7 @@ public class CommentServiceImpl implements CommentService {
 
             map.put("commentVo", commentVo);
             map.put("userVo", userVo);
-            map.put("write_time", format.format(commentVo.getComment_write_date()));
+            map.put("totalCommentLikeCount", commentDAO.getTotalCommentLikeCount(commentVo.getComment_no()));
 
             dataList.add(map);
         }
@@ -81,5 +82,30 @@ public class CommentServiceImpl implements CommentService {
     //  댓글 삭제
     public void deleteComment(int comment_no) {
         commentDAO.deleteComment(comment_no);
+    }
+
+    //  댓글 좋아요
+    @Override
+    @LogException
+    public void doCommentLike(CommentLikeVo param) {
+        if (getMyCommentLikeCount(param) < 1) {
+            commentDAO.doCommentLike(param);
+        } else {
+            commentDAO.deleteCommentLike(param);
+        }
+    }
+
+    //  댓글 좋아요 상태
+    @Override
+    @LogException
+    public int getMyCommentLikeCount(CommentLikeVo param) {
+        return commentDAO.getMyCommentLikeCount(param);
+    }
+
+    //  댓글 좋아요 총 갯수
+    @Override
+    @LogException
+    public int getTotalCommentLikeCount(int comment_no) {
+        return commentDAO.getTotalCommentLikeCount(comment_no);
     }
 }

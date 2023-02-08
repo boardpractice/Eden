@@ -1,4 +1,7 @@
-/* 회원가입 Table */
+-- 스키마 생성
+create schema 'eden' default character set utf8 collate utf8_bin;
+
+-- 회원가입 테이블
 drop table eden_user;
 create table eden_user(
     user_no int(11) primary key auto_increment,
@@ -20,7 +23,7 @@ create table eden_user(
     constraint user_find_question_no foreign key (question_no) references eden_find_question (question_no)
 );
 
-/* 비밀번호 찾기 질문 테이블 */
+-- 비밀번호 찾기 질문 테이블
 drop table eden_find_question;
 create table eden_find_question
 (
@@ -83,3 +86,13 @@ create table eden_comment(
     constraint comment_boardNo foreign key (board_no) references eden_board(board_no)
 );
 
+-- 댓글 좋아요 테이블
+drop table eden_comment_like;
+create table eden_comment_like(
+    comment_like_no int(11) primary key auto_increment,
+    comment_no int(11) not null,
+    user_no int(11) not null,
+    comment_like_date timestamp not null default now(),
+    constraint comment_like_commentNo foreign key (comment_no) references eden_comment(comment_no),
+    constraint comment_like_userNo foreign key (user_no) references eden_user(user_no)
+);

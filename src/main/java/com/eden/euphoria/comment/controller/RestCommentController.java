@@ -13,6 +13,7 @@
 
 package com.eden.euphoria.comment.controller;
 
+import com.eden.euphoria.comment.dto.CommentLikeVo;
 import com.eden.euphoria.comment.dto.CommentVo;
 import com.eden.euphoria.comment.service.CommentService;
 import com.eden.euphoria.commons.annotation.LogException;
@@ -64,6 +65,7 @@ public class RestCommentController {
 
     //  댓글 수정
     @PostMapping(value = "commentModify")
+    @LogException
     public HashMap<String, Object> commentModify(CommentVo commentVo) {
 
         commentService.updateComment(commentVo);
@@ -75,9 +77,52 @@ public class RestCommentController {
 
     //  댓글 삭제
     @PostMapping(value = "deleteComment")
+    @LogException
     public HashMap<String, Object> deleteComment(int comment_no) {
 
         commentService.deleteComment(comment_no);
+
+        return data;
+    }
+
+    //  댓글 좋아요
+    @PostMapping(value = "doCommentLike")
+    @LogException
+    public HashMap<String, Object> doCommentLike(CommentLikeVo param, HttpSession session) {
+
+        UserVo sessionUser = (UserVo) session.getAttribute("sessionUser");
+
+        if (sessionUser == null) {
+            data.put("result", "error");
+            data.put("reason", "로그인이 필요합니다.");
+            return data;
+        }
+
+        int myLikeCount = commentService.getMyCommentLikeCount(param);
+
+        data.put("result", "success");
+
+        if (myLikeCount < 1) {
+            data.put("status", "like");
+        } else {
+            data.put("status", "unlike");
+        }
+
+        int userNo = sessionUser.getUser_no();
+        param.setUser_no(userNo);
+
+        commentService.doCommentLike(param);
+
+        return data;
+    }
+
+    //  댓글 추천 총 갯수
+    @PostMapping(value = "getTotalCommentLikeCount")
+    @LogException
+    public HashMap<String, Object> getTotalCommentLikeCount(int comment_no) {
+
+        int totalCommentLikeCount = commentService.getTotalCommentLikeCount(comment_no);
+        data.put("totalCommentLikeCount", totalCommentLikeCount);
 
         return data;
     }

@@ -13,6 +13,7 @@
 
 package com.eden.euphoria.comment.dao;
 
+import com.eden.euphoria.comment.dto.CommentLikeVo;
 import com.eden.euphoria.comment.dto.CommentVo;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public interface CommentDAO {
     public List<CommentVo> getCommentList(int board_no);
 
     //  댓글 총 갯수
-    public int getTotalCommentCount(int board_no);
+    public int getTotalCommentCount(int comment_no);
 
     //  댓글 작성
     public void writeComment(CommentVo commentVo);
@@ -33,4 +34,16 @@ public interface CommentDAO {
 
     //  댓글 삭제
     public void deleteComment(int comment_no);
+
+    //  댓글 좋아요
+    public void doCommentLike(CommentLikeVo like);
+
+    //  댓글 좋아요 상태
+    public int getMyCommentLikeCount(CommentLikeVo like);
+
+    //  댓글 좋아요 삭제
+    public void deleteCommentLike(CommentLikeVo like);
+
+    //  댓글 좋아요 총 갯수
+    public int getTotalCommentLikeCount(int comment_no);
 }
