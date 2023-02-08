@@ -61,4 +61,24 @@ public class RestCommentController {
         }
         return data;
     }
+
+    //  댓글 수정
+    @PostMapping(value = "commentModify")
+    public HashMap<String, Object> commentModify(CommentVo commentVo) {
+
+        commentService.updateComment(commentVo);
+
+        data.put("result", "success");
+
+        return data;
+    }
+
+    //  댓글 삭제
+    @PostMapping(value = "deleteComment")
+    public HashMap<String, Object> deleteComment(int comment_no) {
+
+        commentService.deleteComment(comment_no);
+
+        return data;
+    }
 }

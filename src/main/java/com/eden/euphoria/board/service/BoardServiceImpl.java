@@ -46,13 +46,13 @@ public class BoardServiceImpl implements BoardService {
 
         for (BoardVo boardVo : boardVoList) {
             int userNo = boardVo.getUser_no();
+            int totalLikeCount = boardDAO.getTotalLikeCount(boardVo.getBoard_no());
             UserVo userVo = userDAO.getUserByNo(userNo);
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("boardVo", boardVo);
             map.put("userVo", userVo);
             map.put("boardTime", Timer.calculateTime(boardVo.getBoard_write_date()));
-
-            System.out.println("board_time : " + map.get("boardTime"));
+            map.put("totalLikeCount", totalLikeCount);
 
             dataList.add(map);
         }
@@ -71,12 +71,13 @@ public class BoardServiceImpl implements BoardService {
     @LogException
     public HashMap<String, Object> getBoard(int board_no) {
         HashMap<String, Object> map = new HashMap<String, Object>();
-
+        int totalLikeCount = boardDAO.getTotalLikeCount(board_no);
         BoardVo boardVo = boardDAO.getBoardByNo(board_no);
         UserVo userVo = userDAO.getUserByNo(boardVo.getUser_no());
 
         map.put("userVo", userVo);
         map.put("boardVo", boardVo);
+        map.put("totalLikeCount", totalLikeCount);
 
         return map;
     }

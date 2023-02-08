@@ -86,6 +86,9 @@ Purpose : head tag include jsp file
                 <ul class="treeview-menu">
                     <li><a href="#" onclick="SearchId();"> <i class="fa-thin fa-user-magnifying-glass"></i><span>ID 찾기</span></a></li>
                     <li><a href="#" onclick="SearchPw();"> <i class="fa-thin fa-user-magnifying-glass"></i><span>PW 찾기</span></a></li>
+                    <c:if test="${!empty sessionUser}">
+                        <li><a href="${path}/user/profile">내 프로필</a></li>
+                    </c:if>
                 </ul>
             </li>
         </ul>

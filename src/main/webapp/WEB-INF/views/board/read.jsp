@@ -35,7 +35,7 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">글제목 : ${data.boardVo.board_title}</h3>
                         <ul class="list-inline pull-right">
-                            <li><a href="#" class="link-black text-lg" id="likeCount"></a></li>
+                            <li><a href="#" class="link-black text-lg" id="likeCount">좋아요 수(${data.totalLikeCount})</a></li>
                             <li><a href="#" class="link-black text-lg"><i class="fa fa-eye"></i>조회수
                                 (${data.boardVo.board_readcount})</a></li>
                         </ul>
@@ -121,7 +121,7 @@
                 <c:if test="${empty sessionUser}">
                     <div class="box box-warning">
                         <div class="box-header with-border">
-                            <p><i class="fa fa-pencil"></i> 댓글 작성을 위해 <a href="${path}/user/login"
+                            <p><i class="fa fa-pencil"></i> 댓글 작성을 위해 <a href="${path}/main/main"
                                                                          class="link-black text-lg">로그인</a>해주세요</p>
                         </div>
                     </div>
@@ -143,25 +143,25 @@
                     <div class="box-body commentDiv">
                         <c:forEach items="${dataList}" var="comment">
                             <div class="user-block">
-                                <img class="img-circle img-bordered-sm" src="../dist/img/profile/${comment.userVo.user_image}">
+                                <img class="img-circle img-bordered-sm"
+                                     src="../dist/img/profile/${comment.userVo.user_image}">
                                 <span class="username">
                                     <a href="#" id="comment_write">${comment.userVo.user_nickname}</a>
-                                    <a href="#" class="pull-right btn-box-tool replyDelBtn" data-toggle="modal"
-                                       data-target="#delModal">
-                                        <i class="fa fa-times"> 삭제</i>
-                                    </a>
-                                    <a href="#" class="pull-right btn-box-tool replyModBtn" data-toggle="modal"
-                                       data-target="#modModal">
-                                        <i class="fa fa-edit"> 수정</i>
-                                    </a>
+                                    <c:if test="${!empty sessionUser && sessionUser.user_no == comment.userVo.user_no}">
+                                        <button class="pull-right btn-box-tool btn-xs" onclick="modifyComment(${comment.commentVo.comment_no}, ${comment.commentVo.user_no});"><i
+                                                class="fa fa-edit">수정</i></button>
+                                        <button class="pull-right btn-box-tool btn-xs" onclick="deleteComment(${comment.commentVo.comment_no});"><i
+                                                class="fa fa-times">삭제</i></button>
+                                    </c:if>
                                 </span>
-                                <span class="description" id="writeTime">${comment.write_time}</span>
+                                <span class="description"><fmt:formatDate pattern="yyyy-MM-dd a HH:mm"
+                                                                          value="${comment.commentVo.comment_write_date}"/></span>
                             </div>
                             <div class="oldReplytext">${comment.commentVo.comment_content}</div>
                             <br>
                             <ul class="list-inline">
                                 <li>
-                                    <a href="#" class="link-black text-sm replyLike">
+                                    <a href="#" class="link-black text-sm commentLike">
                                         <i class="fa fa-thumbs-o-up"></i> 추천<span></span>
                                     </a>
                                 </li>
@@ -188,3 +188,45 @@
 
 <%@ include file="../include/plugin_js.jsp" %>
 </body>
+
+<div class="modal fade" id="modModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">댓글수정</h4>
+            </div>
+            <div class="modal-body" data-rno>
+                <input type="hidden" class="commentNo"/>
+                <input type="hidden" class="userNo" />
+                <%--<input type="text" id="replytext" class="form-control"/>--%>
+                <textarea class="form-control commentText" rows="3" style="resize: none"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-primary modalModBtn">수정</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="delModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">댓글 삭제</h4>
+            </div>
+            <div class="modal-body" data-rno>
+                <p>댓글을 삭제하시겠습니까?</p>
+                <input type="hidden" class="commentNo"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">아니요.</button>
+                <button type="button" class="btn btn-primary modalDelBtn">네. 삭제합니다.</button>
+            </div>
+        </div>
+    </div>
+</div>
