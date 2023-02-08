@@ -88,6 +88,8 @@ Purpose : head tag include jsp file
             $(document).ajaxStop(function () {
                 $('#loading').hide(); // ajax 끝 -> 로딩바 히든
             });
+
+            $("#loading").hide();
         });
 
         function goPage(boardNo) {
@@ -148,4 +150,11 @@ Purpose : head tag include jsp file
             transform : translate(-50%, -50%);
         }
     </style>
+    <div id="loading">
+        <div id="loading_bar">
+            <!-- 로딩바의 경로를 img 태그안에 지정해준다. -->
+            <img src="/dist/img/loading.gif">
+            <p style="font-size: x-large; font-weight: bold;">로딩 중 입니다 ...</p>
+        </div>
+    </div>
 </head>
