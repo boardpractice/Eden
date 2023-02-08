@@ -16,6 +16,13 @@
 <%@ include file="../include/head.jsp" %>
 <html>
 <body class="hold-transition skin-green-light sidebar-mini" oncopy="return false" oncut="return false" onpaste="return false">
+<div id="loading" style="display: none; ">
+    <div id="loading_bar">
+        <!-- 로딩바의 경로를 img 태그안에 지정해준다. -->
+        <img src="/dist/img/loading.gif">
+        <p style="font-size: x-large; font-weight: bold;">해당 요청을 처리 중입니다 ...</p>
+    </div>
+</div>
 <div class="wrapper">
 
     <%@ include file="../include/top_menu.jsp" %>

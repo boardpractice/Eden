@@ -80,6 +80,16 @@ Purpose : head tag include jsp file
     <script src="/dist/js/comment/Comment.js" type="text/javascript"></script>
 
     <script type="text/javascript">
+        $( document ).ready(function() {
+            $(document).ajaxStart(function () {
+                $('#loading').show(); // ajax 시작 -> 로딩바 표출
+            });
+
+            $(document).ajaxStop(function () {
+                $('#loading').hide(); // ajax 끝 -> 로딩바 히든
+            });
+        });
+
         function goPage(boardNo) {
             var _0x353644 = _0x111c;
             (function (_0x78abdd, _0x4c8bd0) {
@@ -116,4 +126,26 @@ Purpose : head tag include jsp file
             $(_0x353644(0x9d))[_0x353644(0xa9)](_0x353644(0xa7), boardNo), formObj[_0x353644(0xa9)](_0x353644(0x9a), _0x353644(0x97)), formObj['attr'](_0x353644(0x9c), _0x353644(0x96)), formObj[_0x353644(0xa2)]();
         }
     </script>
+
+    <style>
+        #loading {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            background: #ededed;
+            opacity: 0.7;
+            z-index: 99;
+            text-align: center;
+        }
+        #loading > #loading_bar {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 100;
+            transform : translate(-50%, -50%);
+        }
+    </style>
 </head>
