@@ -15,6 +15,7 @@ package com.eden.euphoria.board.dao;
 
 import com.eden.euphoria.board.dto.BoardLikeVo;
 import com.eden.euphoria.board.dto.BoardVo;
+import com.eden.euphoria.board.dto.CategoryVo;
 
 import java.util.List;
 
@@ -22,6 +23,9 @@ public interface BoardDAO {
 
     //  게시글 목록
     public List<BoardVo> getBoardList();
+
+    //  게시글 목록 (카테고리별 정렬)
+    public List<BoardVo> getBoardByCategoryList(int category_no);
 
     //  게시글 작성
     public void insertBoard(BoardVo param);
@@ -46,4 +50,10 @@ public interface BoardDAO {
 
     //  게시글 좋아요 총 갯수
     public int getTotalLikeCount(int board_no);
+
+    //  게시글 카테고리 정보
+    public CategoryVo getCategoryByNo(int category_no);
+
+    //  게시글 카테고리 목록
+    public List<CategoryVo> getCategoryList();
 }

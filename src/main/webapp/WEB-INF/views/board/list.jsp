@@ -52,6 +52,7 @@
                     <thead>
                     <tr>
                         <th scope="col">글 번호</th>
+                        <th scope="col">카테고리</th>
                         <th scope="col">제목</th>
                         <th scope="col">작성자</th>
                         <th scope="col">작성일</th>
@@ -62,6 +63,7 @@
                     <c:forEach items="${dataList }" var="data">
                         <tr>
                             <td class="text-center">${data.boardVo.board_no}</td>
+                            <td class="text-center">${data.categoryVo.category_name}</td>
                             <td class="text-center"><a
                                     href="javascript:goPage(${data.boardVo.board_no});">${data.boardVo.board_title }</a>
                             </td>
@@ -76,7 +78,7 @@
             </div>
             <div class="box-footer">
                 <div class="pull-right">
-                    <a class="btn btn-success btn-flat" href="../board/write">
+                    <a class="btn btn-success btn-flat" href="../board/write?category_no=${category_no}">
                         <i class="fa fa-pencil"></i> 글쓰기
                     </a>
                 </div>

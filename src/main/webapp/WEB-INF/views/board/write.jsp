@@ -15,7 +15,8 @@
 
 <%@ include file="../include/head.jsp" %>
 <html>
-<body class="hold-transition skin-green-light sidebar-mini" oncopy="return false" oncut="return false" onpaste="return false">
+<body class="hold-transition skin-green-light sidebar-mini" oncopy="return false" oncut="return false"
+      onpaste="return false">
 <div class="wrapper">
 
     <%@ include file="../include/top_menu.jsp" %>
@@ -32,6 +33,25 @@
                             <h3 class="box-title">게시글 작성</h3>
                         </div>
                         <div class="box-body">
+                            <div class="form-group">
+                                <label for="category">카테고리</label>
+                                <c:if test="${empty list}">
+                                    <input type="hidden" id="categoryNo" name="category_no" value="${data.category_no}">
+                                    <input class="form-control" id="category" value="${data.category_name}" readonly>
+                                </c:if>
+                                <c:if test="${!empty list}">
+                                    <div class="row mt-1">
+                                        <select class="form-control" name="category_no" id="category"
+                                                aria-label="Default select example">
+                                            <c:forEach items="${list}" var="category">
+                                                <option value="${category.category_no}">
+                                                        ${category.category_name}
+                                                </option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </c:if>
+                            </div>
                             <div class="form-group">
                                 <label for="title">제목</label>
                                 <input class="form-control" id="title" name="board_title" placeholder="제목을 입력해주세요">

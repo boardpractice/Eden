@@ -15,6 +15,7 @@ package com.eden.euphoria.board.dao;
 
 import com.eden.euphoria.board.dto.BoardLikeVo;
 import com.eden.euphoria.board.dto.BoardVo;
+import com.eden.euphoria.board.dto.CategoryVo;
 import com.eden.euphoria.commons.annotation.LogException;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,5 +92,27 @@ public class BoardDAOImpl implements BoardDAO {
     @LogException
     public int getTotalLikeCount(int board_no) {
         return sqlSession.selectOne(NAMESPACE + ".getTotalLikeCount", board_no);
+    }
+
+    //  게시글 카테고리별 정렬
+    @Override
+    @LogException
+    public List<BoardVo> getBoardByCategoryList(int category_no) {
+        return sqlSession.selectList(NAMESPACE + ".getBoardByCategoryList", category_no);
+    }
+
+    //  게시글 카테고리 정보
+    @Override
+    @LogException
+    public CategoryVo getCategoryByNo(int category_no) {
+        return sqlSession.selectOne(NAMESPACE + ".getCategoryByNo", category_no);
+    }
+
+    //  게시글 카테고리 목록
+
+    @Override
+    @LogException
+    public List<CategoryVo> getCategoryList() {
+        return sqlSession.selectList(NAMESPACE + ".getCategoryList");
     }
 }

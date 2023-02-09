@@ -14,6 +14,7 @@
 package com.eden.euphoria.board.controller;
 
 import com.eden.euphoria.board.dto.BoardVo;
+import com.eden.euphoria.board.dto.CategoryVo;
 import com.eden.euphoria.board.service.BoardService;
 import com.eden.euphoria.comment.service.CommentService;
 import com.eden.euphoria.commons.annotation.LogException;
@@ -28,6 +29,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/board/*")
@@ -42,11 +44,12 @@ public class BoardController {
     //  게시글 목록
     @GetMapping(value = "list")
     @LogException
-    public String list(Model model) {
+    public String list(Model model, @RequestParam(value = "category_no", defaultValue = "0") int category_no) {
 
-        ArrayList<HashMap<String, Object>> dataList = boardService.getBoardList();
+        ArrayList<HashMap<String, Object>> dataList = boardService.getBoardList(category_no);
 
         model.addAttribute("dataList", dataList);
+        model.addAttribute("category_no", category_no);
 
         return "board/list";
     }
@@ -54,7 +57,14 @@ public class BoardController {
     //  게시글 작성 페이지
     @GetMapping("write")
     @LogException
-    public String write(@ModelAttribute("boardVo") BoardVo vo) {
+    public String write(@RequestParam(value = "category_no", defaultValue = "0") int category_no, @ModelAttribute("boardVo") BoardVo vo, Model model) {
+
+        if (category_no != 0) {
+            model.addAttribute("data", boardService.getCategoryByNo(category_no));
+        } else {
+            model.addAttribute("list", boardService.getCategoryList());
+        }
+
         return "board/write";
     }
 
@@ -72,7 +82,7 @@ public class BoardController {
 
         boardService.insertBoard(param);
 
-        return "redirect:../board/list";
+        return "redirect:../board/list?category_no=" + param.getCategory_no();
     }
 
     //  게시글 보기 페이지
@@ -102,7 +112,7 @@ public class BoardController {
 
         boardService.updateBoard(boardVo);
 
-        return "redirect:../board/list";
+        return "redirect:../board/list?category_no="+boardVo.getCategory_no();
     }
 
     //  게시글 삭제 프로시져

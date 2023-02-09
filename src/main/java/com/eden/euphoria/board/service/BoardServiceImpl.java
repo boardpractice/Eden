@@ -16,6 +16,7 @@ package com.eden.euphoria.board.service;
 import com.eden.euphoria.board.dao.BoardDAO;
 import com.eden.euphoria.board.dto.BoardLikeVo;
 import com.eden.euphoria.board.dto.BoardVo;
+import com.eden.euphoria.board.dto.CategoryVo;
 import com.eden.euphoria.board.dto.Timer;
 import com.eden.euphoria.commons.annotation.LogException;
 import com.eden.euphoria.user.dao.UserDAO;
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -39,20 +41,28 @@ public class BoardServiceImpl implements BoardService {
     //  게시글 목록
     @Override
     @LogException
-    public ArrayList<HashMap<String, Object>> getBoardList() {
+    public ArrayList<HashMap<String, Object>> getBoardList(int category_no) {
         ArrayList<HashMap<String, Object>> dataList = new ArrayList<HashMap<String, Object>>();
 
-        List<BoardVo> boardVoList = boardDAO.getBoardList();
-
+        List<BoardVo> boardVoList = new LinkedList<BoardVo>();
+        if (category_no == 0) {
+            boardVoList = boardDAO.getBoardList();
+        } else {
+            boardVoList = boardDAO.getBoardByCategoryList(category_no);
+        }
         for (BoardVo boardVo : boardVoList) {
             int userNo = boardVo.getUser_no();
             int totalLikeCount = boardDAO.getTotalLikeCount(boardVo.getBoard_no());
+
             UserVo userVo = userDAO.getUserByNo(userNo);
+            CategoryVo categoryVo = boardDAO.getCategoryByNo(boardVo.getCategory_no());
+
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("boardVo", boardVo);
             map.put("userVo", userVo);
             map.put("boardTime", Timer.calculateTime(boardVo.getBoard_write_date()));
             map.put("totalLikeCount", totalLikeCount);
+            map.put("categoryVo", categoryVo);
 
             dataList.add(map);
         }
@@ -119,5 +129,19 @@ public class BoardServiceImpl implements BoardService {
     @LogException
     public int getTotalLikeCount(int board_no) {
         return boardDAO.getTotalLikeCount(board_no);
+    }
+
+    //  게시글 카테고리 목록
+    @Override
+    @LogException
+    public List<CategoryVo> getCategoryList() {
+        return boardDAO.getCategoryList();
+    }
+
+    //  게시글 카테고리 정보
+    @Override
+    @LogException
+    public CategoryVo getCategoryByNo(int category_no) {
+        return boardDAO.getCategoryByNo(category_no);
     }
 }

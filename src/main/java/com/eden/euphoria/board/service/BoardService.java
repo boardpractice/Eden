@@ -15,14 +15,16 @@ package com.eden.euphoria.board.service;
 
 import com.eden.euphoria.board.dto.BoardLikeVo;
 import com.eden.euphoria.board.dto.BoardVo;
+import com.eden.euphoria.board.dto.CategoryVo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public interface BoardService {
 
     //  게시글 목록
-    public ArrayList<HashMap<String, Object>> getBoardList();
+    public ArrayList<HashMap<String, Object>> getBoardList(int category_no);
 
     //  게시글 작성
     public void insertBoard(BoardVo param);
@@ -44,4 +46,10 @@ public interface BoardService {
 
     //  게시글 좋아요 총 갯수
     public int getTotalLikeCount(int board_no);
+
+    //  게시글 카테고리 목록
+    public List<CategoryVo> getCategoryList();
+
+    //  게시글 카테고리 정보
+    public CategoryVo getCategoryByNo(int category_no);
 }

@@ -10,8 +10,10 @@
 
     <!-- 게시글 작성 -->
     <insert id="write">
-        insert into eden_board(user_no, board_title, board_content, board_readcount, board_write_date)
-        VALUES (#{user_no},
+        insert into eden_board(category_no, user_no, board_title, board_content, board_readcount, board_write_date)
+        VALUES (
+                #{category_no},
+                #{user_no},
                 #{board_title},
                 #{board_content},
                 0,
@@ -61,5 +63,20 @@
     <!-- 게시글 좋아요 총 갯수 -->
     <select id="getTotalLikeCount" resultType="int">
         select count(*) from eden_board_like where board_no = #{board_no}
+    </select>
+
+    <!-- 게시글 카테고리별 출력 -->
+    <select id="getBoardByCategoryList" resultType="BoardVo">
+        select * from eden_board where category_no = #{category_no}
+    </select>
+
+    <!-- 게시글 카테고리 정보 -->
+    <select id="getCategoryByNo" resultType="CategoryVo">
+        select * from eden_board_category where category_no = #{category_no}
+    </select>
+
+    <!-- 게시글 카테고리 목록 -->
+    <select id="getCategoryList" resultType="CategoryVo">
+        select * from eden_board_category
     </select>
 </mapper>
