@@ -51,7 +51,9 @@ window.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    const url = location.pathname;
+    /*
+    *     const url = location.pathname;
+*/
     getTotalLikeCount();
 
     if (url.includes('read')) {
@@ -62,7 +64,9 @@ window.addEventListener("DOMContentLoaded", function () {
     var formObj = $("form[role='form']");
 
     $(".listBtn").click(function () {
-        self.location = "../board/list"
+        formObj.attr("action", "../board/list");
+        formObj.attr("method", "post");
+        formObj.submit();
     });
 
     $(".modBtn").click(function () {
@@ -110,3 +114,11 @@ window.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+function listPage(category_no) {
+    const form = $("form[id='list']");
+    $("#category_no").attr("value", category_no);
+    form.attr("action", "../board/list");
+    form.attr("method", "post");
+    form.submit();
+}

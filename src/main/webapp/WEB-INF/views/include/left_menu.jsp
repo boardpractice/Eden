@@ -71,9 +71,9 @@ Purpose : head tag include jsp file
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="${path}/board/list?category_no=0"> <i class="fa-thin fa-user-magnifying-glass"></i><span>전채글보기</span></a></li>
-                    <li><a href="${path}/board/list?category_no=1"> <i class="fa-thin fa-user-magnifying-glass"></i><span>자유게시판</span></a></li>
-                    <li><a href="${path}/board/list?category_no=2"> <i class="fa-thin fa-user-magnifying-glass"></i><span>사진게시판</span></a></li>
+                    <li><a href="#" onclick="listPage(0)"> <i class="fa-thin fa-user-magnifying-glass"></i><span>전채글보기</span></a></li>
+                    <li><a href="#" onclick="listPage(1)"> <i class="fa-thin fa-user-magnifying-glass"></i><span>자유게시판</span></a></li>
+                    <li><a href="#" onclick="listPage(2)"> <i class="fa-thin fa-user-magnifying-glass"></i><span>사진게시판</span></a></li>
                 </ul>
             </li>
 
@@ -92,6 +92,9 @@ Purpose : head tag include jsp file
                         <li><a href="${path}/user/profile">내 프로필</a></li>
                     </c:if>
                 </ul>
+                <form id="list" role="form" method="post">
+                    <input type="hidden" id="category_no" name="category_no" value="">
+                </form>
             </li>
         </ul>
         <%-- /.sidebar-menu --%>

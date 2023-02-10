@@ -24,12 +24,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/board/*")
@@ -42,11 +46,17 @@ public class BoardController {
     CommentService commentService;
 
     //  게시글 목록
-    @GetMapping(value = "list")
+    @RequestMapping(value = "list")
     @LogException
-    public String list(Model model, @RequestParam(value = "category_no", defaultValue = "0") int category_no) {
+    public String list(Model model, @RequestParam(value = "category_no", defaultValue = "0") int category_no, HttpServletRequest request) {
 
         ArrayList<HashMap<String, Object>> dataList = boardService.getBoardList(category_no);
+
+        Map<String, ?> map = RequestContextUtils.getInputFlashMap(request);
+
+        if (map != null) {
+            category_no = (int) map.get("category_no");
+        }
 
         model.addAttribute("dataList", dataList);
         model.addAttribute("category_no", category_no);
@@ -71,7 +81,7 @@ public class BoardController {
     //  게시글 작성 프로시저
     @PostMapping(value = "writeProcess")
     @LogException
-    public String writeProcess(@Valid BoardVo param, BindingResult result, HttpSession session) {
+    public String writeProcess(@Valid BoardVo param, BindingResult result, HttpSession session, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
             return "board/write";
@@ -80,9 +90,10 @@ public class BoardController {
         UserVo sessionUser = (UserVo) session.getAttribute("sessionUser");
         param.setUser_no(sessionUser.getUser_no());
 
+        redirectAttributes.addFlashAttribute("category_no", param.getCategory_no());
         boardService.insertBoard(param);
 
-        return "redirect:../board/list?category_no=" + param.getCategory_no();
+        return "redirect:../board/list";
     }
 
     //  게시글 보기 페이지
@@ -108,11 +119,13 @@ public class BoardController {
     //  게시글 수정 프로시져
     @PostMapping(value = "modifyProcess")
     @LogException
-    public String modifyProcess(BoardVo boardVo) {
+    public String modifyProcess(BoardVo boardVo, RedirectAttributes redirectAttributes) {
 
         boardService.updateBoard(boardVo);
 
-        return "redirect:../board/list?category_no="+boardVo.getCategory_no();
+        redirectAttributes.addFlashAttribute("category_no", boardVo.getCategory_no());
+
+        return "redirect:../board/list";
     }
 
     //  게시글 삭제 프로시져

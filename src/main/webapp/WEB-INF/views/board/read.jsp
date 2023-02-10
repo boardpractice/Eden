@@ -72,6 +72,7 @@
                         <form role="form" method="post">
                             <input type="hidden" id="boardNo" name="board_no" value="${data.boardVo.board_no}">
                             <input type="hidden" id="userNo" name="user_no" value="${sessionUser.user_no}">
+                            <input type="hidden" id="categoryNo" name="category_no" value="${data.boardVo.category_no}">
                         </form>
                         <button class="btn btn-primary listBtn"><i class="fa fa-list"></i> 목록</button>
                         <c:if test="${!empty sessionUser}">
