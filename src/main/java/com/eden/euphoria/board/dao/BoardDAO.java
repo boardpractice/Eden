@@ -56,4 +56,13 @@ public interface BoardDAO {
 
     //  게시글 카테고리 목록
     public List<CategoryVo> getCategoryList();
+
+    //  게시글 제목 검색
+    public List<BoardVo> selectByTitle(String title, int category_no);
+
+    //  게시글 내용 검색
+    public List<BoardVo> selectByContent(String content, int category_no);
+
+    //  게시글 작성자 검색
+    public List<BoardVo> selectByNickName(String nickname, int category_no);
 }

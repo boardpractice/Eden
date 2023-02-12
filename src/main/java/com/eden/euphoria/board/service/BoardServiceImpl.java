@@ -26,7 +26,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -41,15 +40,30 @@ public class BoardServiceImpl implements BoardService {
     //  게시글 목록
     @Override
     @LogException
-    public ArrayList<HashMap<String, Object>> getBoardList(int category_no) {
+    public ArrayList<HashMap<String, Object>> getBoardList(int category_no, String category, String keyword) {
         ArrayList<HashMap<String, Object>> dataList = new ArrayList<HashMap<String, Object>>();
 
-        List<BoardVo> boardVoList = new LinkedList<BoardVo>();
+        List<BoardVo> boardVoList;
+
         if (category_no == 0) {
             boardVoList = boardDAO.getBoardList();
         } else {
             boardVoList = boardDAO.getBoardByCategoryList(category_no);
         }
+        if (category != null && keyword != null) {
+            switch (category) {
+                case "title":
+                    boardVoList = boardDAO.selectByTitle(keyword, category_no);
+                    break;
+                case "content":
+                    boardVoList = boardDAO.selectByContent(keyword, category_no);
+                    break;
+                case "nick":
+                    boardVoList = boardDAO.selectByNickName(keyword, category_no);
+                    break;
+            }
+        }
+
         for (BoardVo boardVo : boardVoList) {
             int userNo = boardVo.getUser_no();
             int totalLikeCount = boardDAO.getTotalLikeCount(boardVo.getBoard_no());

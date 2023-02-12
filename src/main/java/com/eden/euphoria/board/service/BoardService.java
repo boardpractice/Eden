@@ -24,7 +24,7 @@ import java.util.List;
 public interface BoardService {
 
     //  게시글 목록
-    public ArrayList<HashMap<String, Object>> getBoardList(int category_no);
+    public ArrayList<HashMap<String, Object>> getBoardList(int category_no, String category, String keyword);
 
     //  게시글 작성
     public void insertBoard(BoardVo param);

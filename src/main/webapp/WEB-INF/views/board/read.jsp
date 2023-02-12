@@ -74,7 +74,7 @@
                             <input type="hidden" id="userNo" name="user_no" value="${sessionUser.user_no}">
                             <input type="hidden" id="categoryNo" name="category_no" value="${data.boardVo.category_no}">
                         </form>
-                        <button class="btn btn-primary listBtn"><i class="fa fa-list"></i> 목록</button>
+                        <button class="btn btn-primary" onclick="listPage(${data.boardVo.category_no})"><i class="fa fa-list"></i> 목록</button>
                         <c:if test="${!empty sessionUser}">
                             <button type="button" class="btn btn-info boardLike"><i class="fa-regular fa-thumbs-up"
                                                                                     id="like"></i> 좋아요

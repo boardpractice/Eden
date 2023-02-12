@@ -69,7 +69,7 @@
 
                         <div class="box-footer">
                             <div class="pull-right">
-                                <a href="../board/list" class="btn btn-primary"><i class="fa fa-list"></i> 목록</a>
+                                <a href="#" onclick="listPage(${data.category_no});" class="btn btn-primary"><i class="fa fa-list"></i> 목록</a>
                                 <button type="reset" class="btn btn-warning"><i class="fa fa-reply"></i> 초기화</button>
                                 <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> 저장</button>
                             </div>

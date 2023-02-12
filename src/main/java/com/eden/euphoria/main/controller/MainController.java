@@ -32,13 +32,13 @@ public class MainController {
         return "main/main";
     }
 
-    @GetMapping(value = "/error/404")
+    @GetMapping(value = "/error/404/")
     @LogException
     public String error_404_page() {
         return "error/error_404_page";
     }
 
-    @GetMapping(value = "/error/500")
+    @GetMapping(value = "/error/500/")
     @LogException
     public String error_500_page() {
         return "error/error_500_page";

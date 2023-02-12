@@ -48,9 +48,11 @@ public class BoardController {
     //  게시글 목록
     @RequestMapping(value = "list")
     @LogException
-    public String list(Model model, @RequestParam(value = "category_no", defaultValue = "0") int category_no, HttpServletRequest request) {
+    public String list(Model model, @RequestParam(value = "category_no", defaultValue = "0") int category_no,
+                       @RequestParam(value = "category", defaultValue = "") String category, @RequestParam(value = "keyword", defaultValue = "") String keyword,
+                       HttpServletRequest request) {
 
-        ArrayList<HashMap<String, Object>> dataList = boardService.getBoardList(category_no);
+        ArrayList<HashMap<String, Object>> dataList = boardService.getBoardList(category_no, category, keyword);
 
         Map<String, ?> map = RequestContextUtils.getInputFlashMap(request);
 

@@ -21,7 +21,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -114,5 +116,35 @@ public class BoardDAOImpl implements BoardDAO {
     @LogException
     public List<CategoryVo> getCategoryList() {
         return sqlSession.selectList(NAMESPACE + ".getCategoryList");
+    }
+
+    //  게시글 제목 검색
+    @Override
+    @LogException
+    public List<BoardVo> selectByTitle(String title, int category_no) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("title", title);
+        paramMap.put("category_no", category_no);
+        return sqlSession.selectList(NAMESPACE + ".selectByTitle", paramMap);
+    }
+
+    //  게시글 내용 검색
+    @Override
+    @LogException
+    public List<BoardVo> selectByContent(String content, int category_no) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("content", content);
+        paramMap.put("category_no", category_no);
+        return sqlSession.selectList(NAMESPACE + ".selectByTitle", paramMap);
+    }
+
+    //  게시글 작성자 검색
+    @Override
+    @LogException
+    public List<BoardVo> selectByNickName(String nickname, int category_no) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("nickname", nickname);
+        paramMap.put("category_no", category_no);
+        return sqlSession.selectList(NAMESPACE + ".selectByNickName", paramMap);
     }
 }

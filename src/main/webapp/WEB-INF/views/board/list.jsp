@@ -29,10 +29,10 @@
         </form>
         <section class="content container-fluid">
             <div class="box-header with-border">
-                <form action="../board/list" method="get">
+                <form action="../board/list" method="post">
                     <div class="row mt-3">
-                        <div class="col">
-                            <select name="category" class="form-select">
+                        <div class="col-2">
+                            <select name="category" class="form-control">
                                 <option value="title">제목</option>
                                 <option value="content">내용</option>
                                 <option value="nick">닉네임</option>
@@ -44,6 +44,7 @@
                         <div class="col d-grid">
                             <input type="submit" value="검색" class="btn btn-primary">
                         </div>
+                        <input type="hidden" id="categoryNo" name="category_no" value="${category_no}">
                     </div>
                 </form>
             </div>
