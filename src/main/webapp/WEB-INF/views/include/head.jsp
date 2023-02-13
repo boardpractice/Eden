@@ -80,7 +80,7 @@ Purpose : head tag include jsp file
     <script src="/dist/js/comment/Comment.js" type="text/javascript"></script>
 
     <script type="text/javascript">
-        $( document ).ready(function() {
+        $(document).ready(function () {
             $(document).ajaxStart(function () {
                 $('#loading').show(); // ajax 시작 -> 로딩바 표출
             });
@@ -91,6 +91,15 @@ Purpose : head tag include jsp file
 
             $("#loading").hide();
         });
+
+        function paging(page, additionalParam, category_no) {
+            var formObj = $("form[name='listForm']");
+            $("#pageNum").attr("value", page);
+            $("#CATEGORY_NO").attr("value", category_no);
+            formObj.attr("action", "../board/list");
+            formObj.attr("method", "post");
+            formObj.submit();
+        }
 
         function goPage(boardNo) {
             var _0x353644 = _0x111c;
@@ -147,7 +156,7 @@ Purpose : head tag include jsp file
             top: 50%;
             left: 50%;
             z-index: 100;
-            transform : translate(-50%, -50%);
+            transform: translate(-50%, -50%);
         }
     </style>
     <div id="loading">

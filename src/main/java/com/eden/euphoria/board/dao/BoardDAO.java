@@ -22,10 +22,10 @@ import java.util.List;
 public interface BoardDAO {
 
     //  게시글 목록
-    public List<BoardVo> getBoardList();
+    public List<BoardVo> getBoardList(int pageNum);
 
     //  게시글 목록 (카테고리별 정렬)
-    public List<BoardVo> getBoardByCategoryList(int category_no);
+    public List<BoardVo> getBoardByCategoryList(int category_no, int pageNum);
 
     //  게시글 작성
     public void insertBoard(BoardVo param);
@@ -58,11 +58,14 @@ public interface BoardDAO {
     public List<CategoryVo> getCategoryList();
 
     //  게시글 제목 검색
-    public List<BoardVo> selectByTitle(String title, int category_no);
+    public List<BoardVo> selectByTitle(String title, int category_no, int pageNum);
 
     //  게시글 내용 검색
-    public List<BoardVo> selectByContent(String content, int category_no);
+    public List<BoardVo> selectByContent(String content, int category_no, int pageNum);
 
     //  게시글 작성자 검색
-    public List<BoardVo> selectByNickName(String nickname, int category_no);
+    public List<BoardVo> selectByNickName(String nickname, int category_no, int pageNum);
+
+    //  게시글 총 갯수 ( 페이징 용도 )
+    public int selectCount(String searchType, String searchWord, int category_no);
 }

@@ -40,26 +40,26 @@ public class BoardServiceImpl implements BoardService {
     //  게시글 목록
     @Override
     @LogException
-    public ArrayList<HashMap<String, Object>> getBoardList(int category_no, String category, String keyword) {
+    public ArrayList<HashMap<String, Object>> getBoardList(int category_no, String category, String keyword, int pageNum) {
         ArrayList<HashMap<String, Object>> dataList = new ArrayList<HashMap<String, Object>>();
 
         List<BoardVo> boardVoList;
 
         if (category_no == 0) {
-            boardVoList = boardDAO.getBoardList();
+            boardVoList = boardDAO.getBoardList(pageNum);
         } else {
-            boardVoList = boardDAO.getBoardByCategoryList(category_no);
+            boardVoList = boardDAO.getBoardByCategoryList(category_no, pageNum);
         }
         if (category != null && keyword != null) {
             switch (category) {
                 case "title":
-                    boardVoList = boardDAO.selectByTitle(keyword, category_no);
+                    boardVoList = boardDAO.selectByTitle(keyword, category_no, pageNum);
                     break;
                 case "content":
-                    boardVoList = boardDAO.selectByContent(keyword, category_no);
+                    boardVoList = boardDAO.selectByContent(keyword, category_no, pageNum);
                     break;
                 case "nick":
-                    boardVoList = boardDAO.selectByNickName(keyword, category_no);
+                    boardVoList = boardDAO.selectByNickName(keyword, category_no, pageNum);
                     break;
             }
         }
@@ -81,6 +81,11 @@ public class BoardServiceImpl implements BoardService {
             dataList.add(map);
         }
         return dataList;
+    }
+
+    //  게시글 총 갯수 ( 페이징 용도 )
+    public int getBoardCount(String searchType, String searchWord, int category_no) {
+        return boardDAO.selectCount(searchType, searchWord, category_no);
     }
 
     //  게시글 작성

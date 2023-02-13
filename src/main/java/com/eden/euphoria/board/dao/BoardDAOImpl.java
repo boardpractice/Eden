@@ -36,8 +36,8 @@ public class BoardDAOImpl implements BoardDAO {
     //  게시글 목록
     @Override
     @LogException
-    public List<BoardVo> getBoardList() {
-        return sqlSession.selectList(NAMESPACE + ".getBoardList");
+    public List<BoardVo> getBoardList(int pageNum) {
+        return sqlSession.selectList(NAMESPACE + ".getBoardList", pageNum);
     }
 
     //  게시글 작성
@@ -99,8 +99,11 @@ public class BoardDAOImpl implements BoardDAO {
     //  게시글 카테고리별 정렬
     @Override
     @LogException
-    public List<BoardVo> getBoardByCategoryList(int category_no) {
-        return sqlSession.selectList(NAMESPACE + ".getBoardByCategoryList", category_no);
+    public List<BoardVo> getBoardByCategoryList(int category_no, int pageNum) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("category_no", category_no);
+        map.put("pageNum", pageNum);
+        return sqlSession.selectList(NAMESPACE + ".getBoardByCategoryList", map);
     }
 
     //  게시글 카테고리 정보
@@ -121,30 +124,48 @@ public class BoardDAOImpl implements BoardDAO {
     //  게시글 제목 검색
     @Override
     @LogException
-    public List<BoardVo> selectByTitle(String title, int category_no) {
+    public List<BoardVo> selectByTitle(String title, int category_no, int pageNum) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("title", title);
         paramMap.put("category_no", category_no);
+        paramMap.put("pageNum", pageNum);
         return sqlSession.selectList(NAMESPACE + ".selectByTitle", paramMap);
     }
 
     //  게시글 내용 검색
     @Override
     @LogException
-    public List<BoardVo> selectByContent(String content, int category_no) {
+    public List<BoardVo> selectByContent(String content, int category_no, int pageNum) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("content", content);
         paramMap.put("category_no", category_no);
+        paramMap.put("pageNum", pageNum);
         return sqlSession.selectList(NAMESPACE + ".selectByTitle", paramMap);
     }
 
     //  게시글 작성자 검색
     @Override
     @LogException
-    public List<BoardVo> selectByNickName(String nickname, int category_no) {
+    public List<BoardVo> selectByNickName(String nickname, int category_no, int pageNum) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("nickname", nickname);
         paramMap.put("category_no", category_no);
+        paramMap.put("pageNum", pageNum);
         return sqlSession.selectList(NAMESPACE + ".selectByNickName", paramMap);
+    }
+
+    //  게시글 총 갯수 ( 페이징 용도 )
+    @Override
+    @LogException
+    public int selectCount(String searchType, String searchWord, int category_no) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("searchType", searchType);
+        map.put("searchWord", searchWord);
+        map.put("category_no", category_no);
+        System.out.println("searchType : " + searchType + " searchWord : " + searchWord);
+        if (searchType != null && searchWord != null) {
+            return sqlSession.selectOne(NAMESPACE + ".selectCount", map);
+        }
+        return sqlSession.selectOne(NAMESPACE + ".boardCount", map);
     }
 }

@@ -14,7 +14,6 @@
 package com.eden.euphoria.board.controller;
 
 import com.eden.euphoria.board.dto.BoardVo;
-import com.eden.euphoria.board.dto.CategoryVo;
 import com.eden.euphoria.board.service.BoardService;
 import com.eden.euphoria.comment.service.CommentService;
 import com.eden.euphoria.commons.annotation.LogException;
@@ -32,7 +31,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -48,21 +46,45 @@ public class BoardController {
     //  게시글 목록
     @RequestMapping(value = "list")
     @LogException
-    public String list(Model model, @RequestParam(value = "category_no", defaultValue = "0") int category_no,
-                       @RequestParam(value = "category", defaultValue = "") String category, @RequestParam(value = "keyword", defaultValue = "") String keyword,
+    public String list(Model model,
+                       @RequestParam(value = "category_no", defaultValue = "0") int category_no,
+                       String searchType,
+                       String searchWord,
+                       @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                        HttpServletRequest request) {
 
-        ArrayList<HashMap<String, Object>> dataList = boardService.getBoardList(category_no, category, keyword);
+        ArrayList<HashMap<String, Object>> dataList = boardService.getBoardList(category_no, searchType, searchWord, pageNum);
 
         Map<String, ?> map = RequestContextUtils.getInputFlashMap(request);
 
         if (map != null) {
             category_no = (int) map.get("category_no");
         }
-
         model.addAttribute("dataList", dataList);
         model.addAttribute("category_no", category_no);
 
+        int boardCount = boardService.getBoardCount(searchType, searchWord, category_no);
+        int totalPageCount = (int) Math.ceil(boardCount / 5.0);
+        //1 2 3 4 5	, 6 7 8 9 10 ....16 17 18 19 20
+        int startPage = ((pageNum - 1) / 5) * 5 + 1;
+        int endPage = ((pageNum - 1) / 5 + 1) * 5;
+        if (endPage > totalPageCount) {
+            endPage = totalPageCount;
+        }
+
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("currentPageNum", pageNum);
+        model.addAttribute("totalPageCount", totalPageCount);
+
+        //링크 유지...
+        String additionalParam = "";
+        if (searchType != null && searchWord != null) {
+            additionalParam += "&searchType=" + searchType;
+            additionalParam += "&searchWord=" + searchWord;
+        }
+
+        model.addAttribute("additionalParam", additionalParam);
         return "board/list";
     }
 

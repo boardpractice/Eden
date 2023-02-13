@@ -24,7 +24,7 @@ import java.util.List;
 public interface BoardService {
 
     //  게시글 목록
-    public ArrayList<HashMap<String, Object>> getBoardList(int category_no, String category, String keyword);
+    public ArrayList<HashMap<String, Object>> getBoardList(int category_no, String category, String keyword, int pageNum);
 
     //  게시글 작성
     public void insertBoard(BoardVo param);
@@ -52,4 +52,8 @@ public interface BoardService {
 
     //  게시글 카테고리 정보
     public CategoryVo getCategoryByNo(int category_no);
+
+    //  게시글 총 갯수 (페이징 처리를 위한 용도)
+    public int getBoardCount(String searchType, String searchWord, int category_no);
+
 }
