@@ -15,7 +15,8 @@
 
 <%@ include file="../include/head.jsp" %>
 <html>
-<body class="hold-transition skin-green-light sidebar-mini" oncopy="return false" oncut="return false" onpaste="return false">
+<body class="hold-transition skin-green-light sidebar-mini" oncopy="return false" oncut="return false"
+      onpaste="return false">
 
 <div class="wrapper">
 
@@ -24,7 +25,7 @@
     <%@ include file="../include/left_menu.jsp" %>
 
     <div class="content-wrapper">
-        <form name="listForm" role="form" method="post">
+        <form name="readForm" role="form" method="post">
             <input type="hidden" id="BOARD_NO" name="board_no" value="">
             <input type="hidden" id="CATEGORY_NO" name="category_no" value="">
             <input type="hidden" id="pageNum" name="pageNum" value="">
@@ -89,7 +90,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <li class="page-item"><a class="page-link"
-                                                             href="#" onclick="paging(${startPage - 1}, ${additionalParam}, ${category_no});">&lt;</a>
+                                                             href="javascript:paging('${startPage - 1}', '${category_no}');">&lt;</a>
                                     </li>
                                 </c:otherwise>
                             </c:choose>
@@ -99,12 +100,12 @@
                                 <c:choose>
                                     <c:when test="${i == currentPageNum }">
                                         <li class="page-item active"><a class="page-link"
-                                                                        href="#" onclick="paging(${i}, ${additionalParam}, ${category_no});">${i}</a>
+                                                                        href="javascript:paging('${i}', '${category_no}');">${i}</a>
                                         </li>
                                     </c:when>
                                     <c:otherwise>
                                         <li class="page-item"><a class="page-link"
-                                                                 href="#" onclick="paging(${i}, ${additionalParam}, ${category_no});">${i}</a>
+                                                                 href="javascript:paging('${i}', ${category_no});">${i}</a>
                                         </li>
                                     </c:otherwise>
                                 </c:choose>
@@ -115,7 +116,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <li class="page-item"><a class="page-link"
-                                                             href="#" onclick="paging(${endPage+1}, ${additionalParam}, ${category_no});">&gt;</a>
+                                                             href="javascript:paging('${endPage + 1}', '${category_no}');">&gt;</a>
                                     </li>
                                 </c:otherwise>
                             </c:choose>

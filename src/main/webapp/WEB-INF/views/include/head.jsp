@@ -92,50 +92,75 @@ Purpose : head tag include jsp file
             $("#loading").hide();
         });
 
-        function paging(page, additionalParam, category_no) {
-            var formObj = $("form[name='listForm']");
-            $("#pageNum").attr("value", page);
-            $("#CATEGORY_NO").attr("value", category_no);
-            formObj.attr("action", "../board/list");
-            formObj.attr("method", "post");
-            formObj.submit();
+        function paging(page, category_no) {
+            function _0x573d() {
+                const _0x177c01 = ['value', '18xBEZKJ', 'post', 'attr', '6960219GgVdAP', 'submit', '382257bQFTPs', 'form[name=\x27readForm\x27]', 'action', '2408484bMwpok', '1265898OspTiZ', '1036924wCwwrA', '#pageNum', '30172296tEVThc', '#CATEGORY_NO', '1667255NnmBCx'];
+                _0x573d = function () {
+                    return _0x177c01;
+                };
+                return _0x573d();
+            }
+
+            const _0xc72d20 = _0x1747;
+            (function (_0xdf7232, _0x6d5682) {
+                const _0x4f00c4 = _0x1747, _0x4dbdd1 = _0xdf7232();
+                while (!![]) {
+                    try {
+                        const _0x2acf5d = -parseInt(_0x4f00c4(0x141)) / 0x1 + -parseInt(_0x4f00c4(0x140)) / 0x2 + -parseInt(_0x4f00c4(0x13c)) / 0x3 + parseInt(_0x4f00c4(0x13f)) / 0x4 + -parseInt(_0x4f00c4(0x145)) / 0x5 * (parseInt(_0x4f00c4(0x147)) / 0x6) + -parseInt(_0x4f00c4(0x13a)) / 0x7 + parseInt(_0x4f00c4(0x143)) / 0x8;
+                        if (_0x2acf5d === _0x6d5682) break; else _0x4dbdd1['push'](_0x4dbdd1['shift']());
+                    } catch (_0x50761f) {
+                        _0x4dbdd1['push'](_0x4dbdd1['shift']());
+                    }
+                }
+            }(_0x573d, 0x8e040));
+            const formObj = $(_0xc72d20(0x13d));
+
+            function _0x1747(_0x3247a9, _0x1da3eb) {
+                const _0x573df0 = _0x573d();
+                return _0x1747 = function (_0x1747b8, _0xaac5bf) {
+                    _0x1747b8 = _0x1747b8 - 0x13a;
+                    let _0x38351a = _0x573df0[_0x1747b8];
+                    return _0x38351a;
+                }, _0x1747(_0x3247a9, _0x1da3eb);
+            }
+
+            $(_0xc72d20(0x142))[_0xc72d20(0x149)]('value', page), $(_0xc72d20(0x144))[_0xc72d20(0x149)](_0xc72d20(0x146), category_no), formObj[_0xc72d20(0x149)](_0xc72d20(0x13e), '../board/list'), formObj[_0xc72d20(0x149)]('method', _0xc72d20(0x148)), formObj[_0xc72d20(0x13b)]();
         }
 
         function goPage(boardNo) {
-            var _0x353644 = _0x111c;
-            (function (_0x78abdd, _0x4c8bd0) {
-                var _0x1ca7b1 = _0x111c, _0x5b2b3b = _0x78abdd();
+            function _0x4135(_0x57c81b, _0x59e9e3) {
+                var _0x4518e1 = _0x4518();
+                return _0x4135 = function (_0x4135b4, _0x43d016) {
+                    _0x4135b4 = _0x4135b4 - 0x1a6;
+                    var _0x2d16d1 = _0x4518e1[_0x4135b4];
+                    return _0x2d16d1;
+                }, _0x4135(_0x57c81b, _0x59e9e3);
+            }
+
+            function _0x4518() {
+                var _0x69c15f = ['post', '11992gZfknn', '#BOARD_NO', '13371110pFfEHZ', '616137cFZshv', '6EJGGas', 'attr', 'submit', '12DYhAmK', '244958GLjlFL', '4046091BPGCfz', 'form[name=\x27readForm\x27]', 'value', '73282FzBFsv', '1341aixxFh', 'action', '/board/read', '2714595WXdZBy', 'method'];
+                _0x4518 = function () {
+                    return _0x69c15f;
+                };
+                return _0x4518();
+            }
+
+            var _0x549f8c = _0x4135;
+            (function (_0x4a7a80, _0x555441) {
+                var _0x22ab14 = _0x4135, _0x41d3bc = _0x4a7a80();
                 while (!![]) {
                     try {
-                        var _0x383849 = -parseInt(_0x1ca7b1(0x98)) / 0x1 * (parseInt(_0x1ca7b1(0xa0)) / 0x2) + parseInt(_0x1ca7b1(0xaa)) / 0x3 * (parseInt(_0x1ca7b1(0xa5)) / 0x4) + parseInt(_0x1ca7b1(0xa1)) / 0x5 * (-parseInt(_0x1ca7b1(0x9e)) / 0x6) + -parseInt(_0x1ca7b1(0x9b)) / 0x7 * (parseInt(_0x1ca7b1(0xa4)) / 0x8) + -parseInt(_0x1ca7b1(0xab)) / 0x9 * (-parseInt(_0x1ca7b1(0x9f)) / 0xa) + parseInt(_0x1ca7b1(0xa8)) / 0xb + parseInt(_0x1ca7b1(0xa6)) / 0xc * (parseInt(_0x1ca7b1(0xa3)) / 0xd);
-                        if (_0x383849 === _0x4c8bd0) break; else _0x5b2b3b['push'](_0x5b2b3b['shift']());
-                    } catch (_0x3b2894) {
-                        _0x5b2b3b['push'](_0x5b2b3b['shift']());
+                        var _0x245bdd = -parseInt(_0x22ab14(0x1ae)) / 0x1 + parseInt(_0x22ab14(0x1b2)) / 0x2 + parseInt(_0x22ab14(0x1a9)) / 0x3 * (-parseInt(_0x22ab14(0x1ad)) / 0x4) + -parseInt(_0x22ab14(0x1b6)) / 0x5 + parseInt(_0x22ab14(0x1aa)) / 0x6 * (parseInt(_0x22ab14(0x1af)) / 0x7) + -parseInt(_0x22ab14(0x1a6)) / 0x8 * (parseInt(_0x22ab14(0x1b3)) / 0x9) + parseInt(_0x22ab14(0x1a8)) / 0xa;
+                        if (_0x245bdd === _0x555441) break; else _0x41d3bc['push'](_0x41d3bc['shift']());
+                    } catch (_0x1dd4a8) {
+                        _0x41d3bc['push'](_0x41d3bc['shift']());
                     }
                 }
-            }(_0x28f4, 0xb67ed));
-
-            function _0x28f4() {
-                var _0x1a920d = ['attr', '278286mbNMBl', '452718kdfHLs', '/board/read', 'post', '5zLfPip', 'form[name=\x27readForm\x27]', 'method', '1162FuYSlH', 'action', '#BOARD_NO', '234834yRhbkP', '20jjXDlu', '337812fvodcD', '70PXSobd', 'submit', '7033hTtKzQ', '43904VQnXme', '24VjBvCl', '43224wvCdhs', 'value', '4896397uHiaWY'];
-                _0x28f4 = function () {
-                    return _0x1a920d;
-                };
-                return _0x28f4();
-            }
-
-            var formObj = $(_0x353644(0x99));
-
-            function _0x111c(_0x252400, _0x2ec980) {
-                var _0x28f4bf = _0x28f4();
-                return _0x111c = function (_0x111cae, _0x2e89a2) {
-                    _0x111cae = _0x111cae - 0x96;
-                    var _0x55783b = _0x28f4bf[_0x111cae];
-                    return _0x55783b;
-                }, _0x111c(_0x252400, _0x2ec980);
-            }
-
-            $(_0x353644(0x9d))[_0x353644(0xa9)](_0x353644(0xa7), boardNo), formObj[_0x353644(0xa9)](_0x353644(0x9a), _0x353644(0x97)), formObj['attr'](_0x353644(0x9c), _0x353644(0x96)), formObj[_0x353644(0xa2)]();
+            }(_0x4518, 0x4f330));
+            var formObj = $(_0x549f8c(0x1b0));
+            $(_0x549f8c(0x1a7))[_0x549f8c(0x1ab)](_0x549f8c(0x1b1), boardNo), formObj[_0x549f8c(0x1ab)](_0x549f8c(0x1b7), _0x549f8c(0x1b8)), formObj[_0x549f8c(0x1ab)](_0x549f8c(0x1b4), _0x549f8c(0x1b5)), formObj[_0x549f8c(0x1ac)]();
         }
+
     </script>
 
     <style>
