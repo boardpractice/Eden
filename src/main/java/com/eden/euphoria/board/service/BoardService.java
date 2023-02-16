@@ -16,6 +16,7 @@ package com.eden.euphoria.board.service;
 import com.eden.euphoria.board.dto.BoardLikeVo;
 import com.eden.euphoria.board.dto.BoardVo;
 import com.eden.euphoria.board.dto.CategoryVo;
+import com.eden.euphoria.board.dto.ViewPageVo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,4 +57,26 @@ public interface BoardService {
     //  게시글 총 갯수 (페이징 처리를 위한 용도)
     public int getBoardCount(String searchType, String searchWord, int category_no);
 
+    //  게시글 조회수 증가 중복 방지
+    public void insertViewPage(ViewPageVo viewPageVo);
+
+    //  게시글 조회수 증가 중복 방지 조회
+    public List<ViewPageVo> getViewPageList(int boardNo);
+
+    //  게시글 조회한 아이피 조회 쿼리
+    public boolean isSelectByLockupIp(String lockup_ip);
+
+    //  게시글 중복 증가 방지 게시글 조회
+    public boolean isSelectByViewByBoardNo(int boardNo);
+
+    //  게시글 조회 중복 증가 방지 조회 (게시글번호, 아이피로 조회)
+    public boolean isSelectByViewPage(ViewPageVo viewPageVo);
+
+    //  게시글 조회수 증가 쿼리
+    public void increaseReadCount(int boardNo);
+
+    public void updateViewPage(ViewPageVo param);
+
+    //  게시글 조회수 중복 증가 삭제
+    public void deleteViewPage(int boardNo);
 }

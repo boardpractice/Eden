@@ -9,5 +9,6 @@
         <typeAlias type="com.eden.euphoria.board.dto.BoardVo" alias="BoardVo" />
         <typeAlias type="com.eden.euphoria.comment.dto.CommentVo" alias="CommentVo" />
         <typeAlias type="com.eden.euphoria.board.dto.CategoryVo" alias="CategoryVo" />
+        <typeAlias type="com.eden.euphoria.board.dto.ViewPageVo" alias="ViewPageVo" />
     </typeAliases>
 </configuration>

@@ -3,6 +3,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.board.BoardSQLMapper">
 
+    <select id="createViewPk" resultType="int">
+        select nextval(eden_board_seq)
+    </select>
+
     <!-- 게시글 목록 -->
     <select id="getBoardList" resultType="BoardVo">
         select t2.*
@@ -233,4 +237,43 @@
             </choose>
         </if>
     </select>
+
+    <!-- 게시글 조회수 중복 증가 방지 전체 조회  -->
+    <select id="getViewPageList" resultType="ViewPageVo">
+        select * from eden_view_page where board_no = #{boardNo}
+    </select>
+
+    <!-- 게시글 조회수 중복 증가 방지 생성 -->
+    <insert id="insertViewPage">
+        insert into eden_view_page (view_page_no, board_no, lockup_ip, view_inquiry_time)
+        values (
+                #{view_page_no},
+                #{board_no},
+                #{lockup_ip},
+                now())
+    </insert>
+
+    <!-- 게시글 조회수 중복 증가 아이피 조회 -->
+    <select id="selectByLockupIp" resultType="int">
+        select count(*) from eden_view_page where lockup_ip = #{lockup_ip}
+    </select>
+
+    <!-- 게시글 조회수 중복 증가 게시글 번호 조회 -->
+    <select id="selectByViewByBoardNo" resultType="int">
+        select count(*) from eden_view_page where board_no = #{boardNo}
+    </select>
+
+    <!-- 게시글 조회수 중복 증가 게시글 번호 및 아이피 조회 -->
+    <select id="selectByViewPage" resultType="int">
+        select count(*) from eden_view_page where lockup_ip = #{lockup_ip} and board_no = #{board_no}
+    </select>
+
+    <!-- 게시글 조회수 증가 -->
+    <update id="increaseReadCount">
+        update eden_board set eden_board.board_readcount = board_readcount + 1 where board_no = #{boardNo}
+    </update>
+
+    <update id="updateViewPage">
+        UPDATE eden_view_page SET view_inquiry_time = now() WHERE lockup_ip = #{lockup_ip} AND board_no = #{board_no}
+    </update>
 </mapper>

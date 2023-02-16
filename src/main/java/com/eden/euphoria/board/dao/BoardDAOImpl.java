@@ -16,6 +16,7 @@ package com.eden.euphoria.board.dao;
 import com.eden.euphoria.board.dto.BoardLikeVo;
 import com.eden.euphoria.board.dto.BoardVo;
 import com.eden.euphoria.board.dto.CategoryVo;
+import com.eden.euphoria.board.dto.ViewPageVo;
 import com.eden.euphoria.commons.annotation.LogException;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -167,5 +168,60 @@ public class BoardDAOImpl implements BoardDAO {
             return sqlSession.selectOne(NAMESPACE + ".selectCount", map);
         }
         return sqlSession.selectOne(NAMESPACE + ".boardCount", map);
+    }
+
+    //  게시글 조회수 증가 조회
+    @Override
+    @LogException
+    public List<ViewPageVo> getViewPageList(int boardNo) {
+        return sqlSession.selectList(NAMESPACE + ".getViewPageList", boardNo);
+    }
+
+    @Override
+    @LogException
+    public void insertViewPage(ViewPageVo viewPageVo) {
+        sqlSession.insert(NAMESPACE + ".insertViewPage", viewPageVo);
+    }
+
+    @Override
+    @LogException
+    public int selectByLockupIp(String lockup_ip) {
+        return sqlSession.selectOne(NAMESPACE + ".selectByLockupIp", lockup_ip);
+    }
+
+    @Override
+    @LogException
+    public int selectByViewByBoardNo(int boardNo) {
+        return sqlSession.selectOne(NAMESPACE + ".selectByViewByBoardNo", boardNo);
+    }
+
+    @Override
+    @LogException
+    public int selectByViewPage(ViewPageVo viewPageVo) {
+        return sqlSession.selectOne(NAMESPACE + ".selectByViewPage", viewPageVo);
+    }
+
+    @Override
+    @LogException
+    public void increaseReadCount(int boardNo) {
+        sqlSession.update(NAMESPACE + ".increaseReadCount", boardNo);
+    }
+
+    @Override
+    @LogException
+    public void updateViewPage(ViewPageVo param) {
+        sqlSession.update(NAMESPACE + ".updateViewPage", param);
+    }
+
+    @Override
+    @LogException
+    public void deleteViewPage(int boardNo) {
+        sqlSession.delete(NAMESPACE + ".deleteViewPage", boardNo);
+    }
+
+    @Override
+    @LogException
+    public int createViewPk() {
+        return sqlSession.selectOne(NAMESPACE + ".createViewPk");
     }
 }

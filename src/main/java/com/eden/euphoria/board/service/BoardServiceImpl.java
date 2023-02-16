@@ -14,10 +14,7 @@
 package com.eden.euphoria.board.service;
 
 import com.eden.euphoria.board.dao.BoardDAO;
-import com.eden.euphoria.board.dto.BoardLikeVo;
-import com.eden.euphoria.board.dto.BoardVo;
-import com.eden.euphoria.board.dto.CategoryVo;
-import com.eden.euphoria.board.dto.Timer;
+import com.eden.euphoria.board.dto.*;
 import com.eden.euphoria.comment.dao.CommentDAO;
 import com.eden.euphoria.commons.annotation.LogException;
 import com.eden.euphoria.user.dao.UserDAO;
@@ -168,5 +165,59 @@ public class BoardServiceImpl implements BoardService {
     @LogException
     public CategoryVo getCategoryByNo(int category_no) {
         return boardDAO.getCategoryByNo(category_no);
+    }
+
+    //  게시글 조회수 증가 조회
+    @Override
+    @LogException
+    public List<ViewPageVo> getViewPageList(int boardNo) {
+        return boardDAO.getViewPageList(boardNo);
+    }
+
+    @Override
+    @LogException
+    public void insertViewPage(ViewPageVo viewPageVo) {
+
+        int viewNo = boardDAO.createViewPk();
+
+        viewPageVo.setView_page_no(viewNo);
+
+        boardDAO.insertViewPage(viewPageVo);
+    }
+
+    @Override
+    @LogException
+    public boolean isSelectByLockupIp(String lockup_ip) {
+        return boardDAO.selectByLockupIp(lockup_ip) > 0;
+    }
+
+    @Override
+    @LogException
+    public boolean isSelectByViewByBoardNo(int boardNo) {
+        return boardDAO.selectByViewByBoardNo(boardNo) > 0;
+    }
+
+    @Override
+    @LogException
+    public boolean isSelectByViewPage(ViewPageVo viewPageVo) {
+        return boardDAO.selectByViewPage(viewPageVo) > 0;
+    }
+
+    @Override
+    @LogException
+    public void increaseReadCount(int boardNo) {
+        boardDAO.increaseReadCount(boardNo);
+    }
+
+    @Override
+    @LogException
+    public void updateViewPage(ViewPageVo param) {
+        boardDAO.updateViewPage(param);
+    }
+
+    @Override
+    @LogException
+    public void deleteViewPage(int boardNo) {
+        boardDAO.deleteViewPage(boardNo);
     }
 }

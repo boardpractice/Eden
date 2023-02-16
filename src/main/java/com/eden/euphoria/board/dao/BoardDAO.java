@@ -16,6 +16,7 @@ package com.eden.euphoria.board.dao;
 import com.eden.euphoria.board.dto.BoardLikeVo;
 import com.eden.euphoria.board.dto.BoardVo;
 import com.eden.euphoria.board.dto.CategoryVo;
+import com.eden.euphoria.board.dto.ViewPageVo;
 
 import java.util.List;
 
@@ -68,4 +69,29 @@ public interface BoardDAO {
 
     //  게시글 총 갯수 ( 페이징 용도 )
     public int selectCount(String searchType, String searchWord, int category_no);
+
+    //  게시글 조회수 증가 중복 방지
+    public void insertViewPage(ViewPageVo viewPageVo);
+
+    //  게시글 조회수 증가 중복 방지 조회
+    public List<ViewPageVo> getViewPageList(int boardNo);
+
+    //  게시글 조회한 아이피 조회 쿼리
+    public int selectByLockupIp(String lockup_ip);
+
+    //  게시글 중복 증가 방지 게시글 조회
+    public int selectByViewByBoardNo(int boardNo);
+
+    //  게시글 조회 중복 증가 방지 조회 (게시글번호, 아이피로 조회)
+    public int selectByViewPage(ViewPageVo viewPageVo);
+
+    //  게시글 조회수 증가 쿼리
+    public void increaseReadCount(int boardNo);
+
+    public void updateViewPage(ViewPageVo param);
+
+    //  게시글 조회수 중복 증가 삭제
+    public void deleteViewPage(int boardNo);
+
+    public int createViewPk();
 }

@@ -136,3 +136,21 @@ alter table eden_board
     add column category_no int(11) not null default 1;
 alter table eden_board
     add constraint board_categoryNo foreign key (category_no) references eden_board_category (category_no);
+
+--  게시글 조회수 중복 증가 방지 쿼리 생성
+drop table eden_view_page;
+create table eden_view_page
+(
+    view_page_no      int(11) primary key,
+    board_no          int(11)      not null,
+    lockup_ip         varchar(200) not null,
+    view_inquiry_time timestamp default now(),
+    constraint view_board_no foreign key (board_no) references eden_board (board_no)
+);
+
+drop sequence eden_view_page_seq;
+create sequence eden_view_page_seq start with 1 increment by 1 maxvalue = 999999;
+
+update eden_board set board_readcount = board_readcount + 1 where board_no = 1;
+
+select * from eden_board where board_no = 1;
