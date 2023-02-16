@@ -161,6 +161,14 @@ Purpose : head tag include jsp file
             $(_0x549f8c(0x1a7))[_0x549f8c(0x1ab)](_0x549f8c(0x1b1), boardNo), formObj[_0x549f8c(0x1ab)](_0x549f8c(0x1b7), _0x549f8c(0x1b8)), formObj[_0x549f8c(0x1ab)](_0x549f8c(0x1b4), _0x549f8c(0x1b5)), formObj[_0x549f8c(0x1ac)]();
         }
 
+        function writePage(category_no) {
+            const form = $("form[name='writeForm']");
+            $("#category").attr("value", category_no);
+            form.attr("action", "../board/write");
+            form.attr("method", "post");
+            form.submit();
+        }
+
     </script>
 
     <style>

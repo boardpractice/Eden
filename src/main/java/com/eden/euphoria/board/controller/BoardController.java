@@ -89,7 +89,7 @@ public class BoardController {
     }
 
     //  게시글 작성 페이지
-    @GetMapping("write")
+    @PostMapping("write")
     @LogException
     public String write(@RequestParam(value = "category_no", defaultValue = "0") int category_no, @ModelAttribute("boardVo") BoardVo vo, Model model) {
 

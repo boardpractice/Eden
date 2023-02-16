@@ -30,6 +30,9 @@
             <input type="hidden" id="CATEGORY_NO" name="category_no" value="">
             <input type="hidden" id="pageNum" name="pageNum" value="">
         </form>
+        <form name="writeForm" role="form" method="post">
+            <input type="hidden" id="category" name="category_no" value="">
+        </form>
         <section class="content container-fluid">
             <div class="box-header with-border">
                 <form action="../board/list" method="post">
@@ -55,25 +58,26 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">글 번호</th>
-                        <th scope="col">카테고리</th>
-                        <th scope="col">제목</th>
-                        <th scope="col">작성자</th>
-                        <th scope="col">작성일</th>
-                        <th scope="col">조회수</th>
+                        <th class="col-xs-1">글 번호</th>
+                        <th class="col-xs-1">카테고리</th>
+                        <th class="col-xs-2">제목</th>
+                        <th class="col-xs-2">작성자</th>
+                        <th class="col-xs-2">작성일</th>
+                        <th class="col-xs-1">조회수</th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${dataList }" var="data">
                         <tr>
-                            <td class="text-center">${data.boardVo.board_no}</td>
-                            <td class="text-center">${data.categoryVo.category_name}</td>
-                            <td class="text-center"><a
+                            <td>${data.boardVo.board_no}</td>
+                            <td>${data.categoryVo.category_name}</td>
+                            <td><a
                                     href="javascript:goPage(${data.boardVo.board_no});">${data.boardVo.board_title }</a>
+                                <span class="badge bg-teal"><i class="fa fa-comment-o"></i> + ${data.totalCommentCount}</span>
                             </td>
-                            <td class="text-center">${data.userVo.user_nickname}</td>
-                            <td class="text-center">${data.boardTime}</td>
-                            <td class="text-center">${data.boardVo.board_readcount}</td>
+                            <td>${data.userVo.user_nickname}</td>
+                            <td>${data.boardTime}</td>
+                            <td><span class="badge bg-red">${data.boardVo.board_readcount}</span></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -126,7 +130,7 @@
             </div>
             <div class="box-footer">
                 <div class="pull-right">
-                    <a class="btn btn-success btn-flat" href="../board/write&category_no=${category_no}">
+                    <a class="btn btn-success btn-flat" href="javascript:writePage(${category_no});">
                         <i class="fa fa-pencil"></i> 글쓰기
                     </a>
                 </div>

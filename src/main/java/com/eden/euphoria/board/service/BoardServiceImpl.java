@@ -18,6 +18,7 @@ import com.eden.euphoria.board.dto.BoardLikeVo;
 import com.eden.euphoria.board.dto.BoardVo;
 import com.eden.euphoria.board.dto.CategoryVo;
 import com.eden.euphoria.board.dto.Timer;
+import com.eden.euphoria.comment.dao.CommentDAO;
 import com.eden.euphoria.commons.annotation.LogException;
 import com.eden.euphoria.user.dao.UserDAO;
 import com.eden.euphoria.user.dto.UserVo;
@@ -36,6 +37,9 @@ public class BoardServiceImpl implements BoardService {
 
     @Autowired
     UserDAO userDAO;
+
+    @Autowired
+    CommentDAO commentDAO;
 
     //  게시글 목록
     @Override
@@ -76,7 +80,9 @@ public class BoardServiceImpl implements BoardService {
             map.put("userVo", userVo);
             map.put("boardTime", Timer.calculateTime(boardVo.getBoard_write_date()));
             map.put("totalLikeCount", totalLikeCount);
+            map.put("totalCommentCount", commentDAO.getTotalCommentCount(boardVo.getBoard_no()));
             map.put("categoryVo", categoryVo);
+
 
             dataList.add(map);
         }
