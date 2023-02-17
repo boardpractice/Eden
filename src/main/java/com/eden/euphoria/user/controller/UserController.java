@@ -13,6 +13,9 @@
 
 package com.eden.euphoria.user.controller;
 
+import com.eden.euphoria.board.service.BoardService;
+import com.eden.euphoria.bookmark.service.BookMarkService;
+import com.eden.euphoria.comment.service.CommentService;
 import com.eden.euphoria.commons.annotation.LogException;
 import com.eden.euphoria.user.dto.QuestionVo;
 import com.eden.euphoria.user.dto.UserVo;
@@ -26,7 +29,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -35,6 +41,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BookMarkService bookMarkService;
 
     //  회원가입 페이지
     @GetMapping(value = "register")
@@ -64,9 +73,12 @@ public class UserController {
 
     // 내정보 페이지
     @GetMapping("profile")
-    public String profile(Model model) {
+    public String profile(Model model, HttpSession session) {
+        UserVo sessionUser = (UserVo) session.getAttribute("sessionUser");
 
+        ArrayList<HashMap<String, Object>> dataList = bookMarkService.getBookMarkList(sessionUser.getUser_no());
         model.addAttribute("data", userService.getJoinQuestionList());
+        model.addAttribute("dataList", dataList);
 
         return "user/profile";
     }

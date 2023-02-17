@@ -10,5 +10,6 @@
         <typeAlias type="com.eden.euphoria.comment.dto.CommentVo" alias="CommentVo" />
         <typeAlias type="com.eden.euphoria.board.dto.CategoryVo" alias="CategoryVo" />
         <typeAlias type="com.eden.euphoria.board.dto.ViewPageVo" alias="ViewPageVo" />
+        <typeAlias type="com.eden.euphoria.bookmark.dto.BookMarkVo" alias="BookMarkVo" />
     </typeAliases>
 </configuration>

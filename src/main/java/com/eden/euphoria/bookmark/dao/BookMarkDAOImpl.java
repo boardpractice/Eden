@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Repository
 public class BookMarkDAOImpl implements BookMarkDAO {
@@ -51,6 +52,11 @@ public class BookMarkDAOImpl implements BookMarkDAO {
         data.put("boardNo", board_no);
         data.put("userNo", user_no);
         sqlSession.delete(NAMESPACE + ".deleteBookMark", data);
+    }
+
+    //  내가 북마크한 게시글 불러오기
+    public List<BookMarkVo> getBookMarkList(int user_no) {
+        return sqlSession.selectList(NAMESPACE + ".getBookMarkList", user_no);
     }
 
 }

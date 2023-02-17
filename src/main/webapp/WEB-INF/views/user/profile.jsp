@@ -81,6 +81,32 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-7">
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li><a href="#myBookmarks" data-toggle="tab"><i class="fa fa-bookmark-o"></i> 나의 스크랩</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane" id="myBookmarks">
+                                <table id="myBookmarksTable" class="table table-bordered table-striped">
+                                    <thead>
+                                    <th>번호</th>
+                                    <th>제목</th>
+                                    <th>작성자</th>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${dataList}" var="data">
+                                        <td>${data.boardVo.board_no}</td>
+                                        <td><a href="javascript:goPage(${data.boardVo.board_no});">${data.boardVo.board_title}</a></td>
+                                        <td>${data.userVo.user_nickname}</td>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
