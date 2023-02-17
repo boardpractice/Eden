@@ -154,3 +154,14 @@ create sequence eden_view_page_seq start with 1 increment by 1 maxvalue = 999999
 update eden_board set board_readcount = board_readcount + 1 where board_no = 1;
 
 select * from eden_board where board_no = 1;
+
+--  게시글 북마크
+drop table eden_book_mark;
+create table eden_book_mark(
+    book_mark_no int(11) primary key auto_increment,
+    board_no int(11) not null,
+    user_no int(11) not null,
+    reg_date timestamp default  now(),
+    constraint bookMark_boardNo foreign key (board_no) references eden_board(board_no),
+    constraint bookMark_userNo foreign key (user_no) references eden_user(user_no)
+);

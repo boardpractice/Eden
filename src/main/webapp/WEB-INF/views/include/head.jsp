@@ -27,36 +27,30 @@ Purpose : head tag include jsp file
     <%-- Tell the browser to be responsive to screen width --%>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/resources/bower_components/bootstrap/dist/css/bootstrap.css">
     <%-- Font Awesome --%>
-    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/resources/bower_components/font-awesome/css/font-awesome.min.css">
     <%-- Ionicons --%>
-    <link rel="stylesheet" href="/bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="/resources/bower_components/Ionicons/css/ionicons.min.css">
     <!-- iCheck -->
-    <link rel="stylesheet" href="/plugins/iCheck/square/blue.css">
+    <link rel="stylesheet" href="/resources/plugins/iCheck/square/blue.css">
     <%-- Theme style --%>
-    <link rel="stylesheet" href="/dist/css/AdminLTE.css">
+    <link rel="stylesheet" href="/resources/dist/css/AdminLTE.css">
     <%-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. --%>
-    <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="/resources/dist/css/skins/_all-skins.min.css">
 
     <%--fileupload--%>
-    <link rel="stylesheet" media="screen" href="/bower_components/fileupload/css/jasny-bootstrap.min.css">
+    <link rel="stylesheet" media="screen" href="/resources/bower_components/fileupload/css/jasny-bootstrap.min.css">
     <%--lightbox--%>
-    <link rel="stylesheet" href="/bower_components/lightbox/css/lightbox.css">
+    <link rel="stylesheet" href="/resources/bower_components/lightbox/css/lightbox.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-    <%-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --%>
-    <%-- WARNING: Respond.js doesn't work if you view the page via file:// --%>
-    <%--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]--%>
+    <link rel="stylesheet" href="/resources/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
     <%-- my css --%>
-    <link rel="stylesheet" href="/dist/css/frameCss.css">
-    <link rel="stylesheet" href="/dist/css/mainBody.css">
+    <link rel="stylesheet" href="/resources/dist/css/frameCss.css">
+    <link rel="stylesheet" href="/resources/dist/css/mainBody.css">
 
     <%-- Google Font --%>
     <link rel="stylesheet"
@@ -71,13 +65,14 @@ Purpose : head tag include jsp file
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
     <%-- my Java Script --%>
-    <script src="/dist/js/user/register.js" type="text/javascript"></script>
-    <script src="/dist/js/user/login.js" type="text/javascript"></script>
-    <script src="/dist/js/user/findUserInfo.js" type="text/javascript"></script>
-    <script src="/dist/js/user/profile.js" type="text/javascript"></script>
-    <script src="/dist/js/user/userRecovery.js" type="text/javascript"></script>
-    <script src="/dist/js/board/Bulletin.js" type="text/javascript"></script>
-    <script src="/dist/js/comment/Comment.js" type="text/javascript"></script>
+    <script src="/resources/dist/js/user/register.js" type="text/javascript"></script>
+    <script src="/resources/dist/js/user/login.js" type="text/javascript"></script>
+    <script src="/resources/dist/js/user/findUserInfo.js" type="text/javascript"></script>
+    <script src="/resources/dist/js/user/profile.js" type="text/javascript"></script>
+    <script src="/resources/dist/js/user/userRecovery.js" type="text/javascript"></script>
+    <script src="/resources/dist/js/board/Bulletin.js" type="text/javascript"></script>
+    <script src="/resources/dist/js/comment/Comment.js" type="text/javascript"></script>
+    <script src="/resources/dist/js/bookmark/BookMark.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -195,7 +190,7 @@ Purpose : head tag include jsp file
     <div id="loading">
         <div id="loading_bar">
             <!-- 로딩바의 경로를 img 태그안에 지정해준다. -->
-            <img src="/dist/img/loading.gif">
+            <img src="/resources/dist/img/loading.gif">
             <p style="font-size: x-large; font-weight: bold;">로딩 중 입니다 ...</p>
         </div>
     </div>

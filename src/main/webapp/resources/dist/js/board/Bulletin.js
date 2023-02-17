@@ -51,9 +51,9 @@ window.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    /*
-    *     const url = location.pathname;
-*/
+
+    const url = location.pathname;
+
     getTotalLikeCount();
 
     if (url.includes('read')) {

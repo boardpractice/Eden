@@ -79,6 +79,7 @@
                             <button type="button" class="btn btn-info boardLike"><i class="fa-regular fa-thumbs-up"
                                                                                     id="like"></i> 좋아요
                             </button>
+                            <a href="#" class="btn btn-info text-lg boardBookmark"><i class="fa fa-bookmark-o"></i> 북마크</a>
                         </c:if>
                         <c:if test="${sessionUser.user_no == data.boardVo.user_no}">
                             <div class="pull-right">

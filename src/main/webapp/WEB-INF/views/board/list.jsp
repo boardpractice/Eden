@@ -76,7 +76,7 @@
                                 <span class="badge bg-teal"><i class="fa fa-comment-o"></i> + ${data.totalCommentCount}</span>
                             </td>
                             <td>${data.userVo.user_nickname}</td>
-                            <td>${data.boardTime}</td>
+                            <td><fmt:formatDate value="${data.boardVo.board_write_date }" pattern="yyyy:MM:dd: HH:mm:ss" /></td>
                             <td><span class="badge bg-red">${data.boardVo.board_readcount}</span></td>
                         </tr>
                     </c:forEach>
