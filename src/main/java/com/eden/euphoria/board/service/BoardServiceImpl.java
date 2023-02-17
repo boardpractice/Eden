@@ -220,4 +220,19 @@ public class BoardServiceImpl implements BoardService {
     public void deleteViewPage(int boardNo) {
         boardDAO.deleteViewPage(boardNo);
     }
+
+    //  내가 작성한 게시글
+    public ArrayList<HashMap<String, Object>> getMyPostList(int user_no) {
+        ArrayList<HashMap<String, Object>> dataList = new ArrayList<HashMap<String, Object>>();
+        List<BoardVo> boardVoList = boardDAO.getMyPostList(user_no);
+        for (BoardVo boardVo : boardVoList) {
+            UserVo userVo = userDAO.getUserByNo(user_no);
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("boardVo", boardVo);
+            map.put("userVo", userVo);
+
+            dataList.add(map);
+        }
+        return dataList;
+    }
 }

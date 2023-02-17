@@ -66,7 +66,7 @@ public class BookMarkServiceImpl implements BookMarkService {
         for (BookMarkVo bookMarkVo : bookMarkVoList) {
             int boardNo = bookMarkVo.getBoard_no();
             BoardVo boardVo = boardDAO.getBoardByNo(boardNo);
-            UserVo userVo = userDAO.getUserByNo(user_no);
+            UserVo userVo = userDAO.getUserByNo(bookMarkVo.getUser_no());
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("boardVo", boardVo);
             map.put("userVo", userVo);

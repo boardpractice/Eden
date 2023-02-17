@@ -79,4 +79,7 @@ public interface BoardService {
 
     //  게시글 조회수 중복 증가 삭제
     public void deleteViewPage(int boardNo);
+
+    //  내가 작성한 게시글
+    public ArrayList<HashMap<String, Object>> getMyPostList(int user_no);
 }

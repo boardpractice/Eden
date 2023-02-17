@@ -276,4 +276,9 @@
     <update id="updateViewPage">
         UPDATE eden_view_page SET view_inquiry_time = now() WHERE lockup_ip = #{lockup_ip} AND board_no = #{board_no}
     </update>
+
+    <!-- 내가 작성한 게시글 -->
+    <select id="getMyPostList" resultType="BoardVo">
+        select * from eden_board where user_no = #{user_no} order by board_no desc
+    </select>
 </mapper>

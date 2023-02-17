@@ -94,4 +94,7 @@ public interface BoardDAO {
     public void deleteViewPage(int boardNo);
 
     public int createViewPk();
+
+    //  내가 작성한 게시글
+    public List<BoardVo> getMyPostList(int user_no);
 }

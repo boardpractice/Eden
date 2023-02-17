@@ -45,6 +45,12 @@ public class UserController {
     @Autowired
     private BookMarkService bookMarkService;
 
+    @Autowired
+    private BoardService boardService;
+
+    @Autowired
+    private CommentService commentService;
+
     //  회원가입 페이지
     @GetMapping(value = "register")
     @LogException
@@ -77,8 +83,12 @@ public class UserController {
         UserVo sessionUser = (UserVo) session.getAttribute("sessionUser");
 
         ArrayList<HashMap<String, Object>> dataList = bookMarkService.getBookMarkList(sessionUser.getUser_no());
+        ArrayList<HashMap<String, Object>> myPostList = boardService.getMyPostList(sessionUser.getUser_no());
+        ArrayList<HashMap<String, Object>> myCommentList = commentService.getMyCommentList(sessionUser.getUser_no());
         model.addAttribute("data", userService.getJoinQuestionList());
         model.addAttribute("dataList", dataList);
+        model.addAttribute("postList", myPostList);
+        model.addAttribute("commentList", myCommentList);
 
         return "user/profile";
     }

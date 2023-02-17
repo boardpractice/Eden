@@ -224,4 +224,11 @@ public class BoardDAOImpl implements BoardDAO {
     public int createViewPk() {
         return sqlSession.selectOne(NAMESPACE + ".createViewPk");
     }
+
+    //  내가 작성한 게시글
+    @Override
+    @LogException
+    public List<BoardVo> getMyPostList(int user_no) {
+        return sqlSession.selectList(NAMESPACE + ".getMyPostList", user_no);
+    }
 }
