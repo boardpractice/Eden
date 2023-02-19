@@ -151,17 +151,37 @@ create table eden_view_page
 drop sequence eden_view_page_seq;
 create sequence eden_view_page_seq start with 1 increment by 1 maxvalue = 999999;
 
-update eden_board set board_readcount = board_readcount + 1 where board_no = 1;
+update eden_board
+set board_readcount = board_readcount + 1
+where board_no = 1;
 
-select * from eden_board where board_no = 1;
+select *
+from eden_board
+where board_no = 1;
 
 --  게시글 북마크
 drop table eden_book_mark;
-create table eden_book_mark(
+create table eden_book_mark
+(
     book_mark_no int(11) primary key auto_increment,
-    board_no int(11) not null,
-    user_no int(11) not null,
-    reg_date timestamp default  now(),
-    constraint bookMark_boardNo foreign key (board_no) references eden_board(board_no),
-    constraint bookMark_userNo foreign key (user_no) references eden_user(user_no)
+    board_no     int(11) not null,
+    user_no      int(11) not null,
+    reg_date     timestamp default now(),
+    constraint bookMark_boardNo foreign key (board_no) references eden_board (board_no),
+    constraint bookMark_userNo foreign key (user_no) references eden_user (user_no)
+);
+
+--  질문답변 게시판
+drop table eden_qna_board;
+create table eden_qna_board
+(
+    qna_no              int(11) primary key auto_increment, -- 질문답변 게시글 번호
+    user_no             int(11) not null,                   -- 유저 번호
+    qna_title           varchar(300) not null,              -- 질문 제목
+    qna_content         varchar(4000) not null,             -- 질문 내용
+    qna_write_date      timestamp default now(),            -- 작성 일자
+    qna_read_count      int(11) default 0,                  -- 조회수
+    qna_root            int(11),                            -- ?
+    qna_step            int(11) default 0,                  -- ?
+    qna_indent          int(11) default 0                   -- ?
 );

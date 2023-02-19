@@ -86,7 +86,6 @@ Purpose : head tag include jsp file
 
             $("#loading").hide();
         });
-
         function paging(page, category_no) {
             function _0x573d() {
                 const _0x177c01 = ['value', '18xBEZKJ', 'post', 'attr', '6960219GgVdAP', 'submit', '382257bQFTPs', 'form[name=\x27readForm\x27]', 'action', '2408484bMwpok', '1265898OspTiZ', '1036924wCwwrA', '#pageNum', '30172296tEVThc', '#CATEGORY_NO', '1667255NnmBCx'];

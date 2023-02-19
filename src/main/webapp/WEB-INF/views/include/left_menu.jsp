@@ -71,9 +71,10 @@ Purpose : head tag include jsp file
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#" onclick="listPage(0)"> <i class="fa-thin fa-user-magnifying-glass"></i><span>전채글보기</span></a></li>
-                    <li><a href="#" onclick="listPage(1)"> <i class="fa-thin fa-user-magnifying-glass"></i><span>자유게시판</span></a></li>
-                    <li><a href="#" onclick="listPage(2)"> <i class="fa-thin fa-user-magnifying-glass"></i><span>사진게시판</span></a></li>
+                    <li><a href="#" onclick="listPage(0)"> <i class="fa-sharp fa-solid fa-magnifying-glass"></i><span>전채글보기</span></a></li>
+                    <li><a href="#" onclick="listPage(1)"> <i class="fa-sharp fa-solid fa-magnifying-glass"></i><span>자유게시판</span></a></li>
+                    <li><a href="#" onclick="listPage(2)"> <i class="fa-sharp fa-solid fa-magnifying-glass"></i><span>사진게시판</span></a></li>
+                    <li><a href="../qna/list"><i class="fa-sharp fa-solid fa-question"></i><span>질문게시판</span></a></li>
                 </ul>
             </li>
 
